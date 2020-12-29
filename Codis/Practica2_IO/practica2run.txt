@@ -1,0 +1,18 @@
+reset;
+
+model practica2.mod;
+
+data practica2.dat;
+
+option solver cplex;
+
+solve;
+
+for {i in JORNADES} {
+	printf 'Partits jornada %i \n', i;
+	for {j in EQUIPS} {
+		for {k in EQUIPS: k > j} {
+			if(X[k, j, i] = 1) then printf '(%i,%i)\n', j, k;
+		}
+	}
+}

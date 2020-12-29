@@ -1,0 +1,259 @@
+
+\documentclass{article}
+\usepackage[landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\title{130 Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\begin{document}
+
+\begin{center}{\huge{\textbf{Formulari EM}}}\\
+\end{center}
+\begin{multicols*}{3}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+%------------ CANVIS COORDENADES ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \textit{Coordenades cilíndriques} $(s, \theta, z)$
+    \hrule 
+    $s = \sqrt{x^2+y^2}$ \quad $ \theta=\arctan{\frac{y}{x}}$ \quad $z = z$ \\
+    $x = s\cos{\theta}$ \quad $ y = s\sin{\theta}$ \quad $ z = z$ \\
+    $
+    \begin{pmatrix}
+    A_x \\
+    A_y \\
+    A_z
+    \end{pmatrix}
+    =
+     \begin{pmatrix}
+   \cos{\theta}	& -\sin{\theta} 	& 0\\
+    \sin{\theta}	& \cos{\theta} 	& 0\\
+   0			& 0		 	& 1\\
+    \end{pmatrix}
+    \begin{pmatrix}
+    A_s \\
+    A_{\theta} \\
+    A_z
+    \end{pmatrix}
+    $ \\
+   
+     \textit{Coordenades esfèriques} $(r, \theta, \varphi)$
+     \hrule 
+     
+     $r = \sqrt{x^2+y^2+z^2}$ \quad $ \theta=\arccos{\frac{z}{r}}$ \quad $ \varphi = \frac{y}{x}$ \\
+    $x = r\sin{\theta}\cos{\varphi}$ \quad $ y = r\sin{\theta}\sin{\varphi}$ \quad $z = r\cos{\theta}$ \\
+    $
+    \begin{pmatrix}
+    A_x \\
+    A_y \\
+    A_z
+    \end{pmatrix}
+    =
+     \begin{pmatrix}
+    \sin{\theta}\cos{\varphi}		& \cos{\theta}\cos{\varphi} 	& -\sin{\varphi}\\
+    \sin{\theta}\sin{\varphi}		& \cos{\theta}\sin{\varphi}		& \cos{\varphi}\\
+   \cos{\theta}			& -\sin{\theta}		 	& 0\\
+    \end{pmatrix}
+    \begin{pmatrix}
+    A_s \\
+    A_{\theta} \\
+    A_z
+    \end{pmatrix}
+    $
+    $d\vec{S}_{r=cte} =r^2\sin{\theta} d\theta d\varphi$
+    $d\vec{S}_{\theta=cte} =r \sin{\theta} dr d\varphi$
+    $d\vec{S}_{\varphi=cte} =r dr d\theta$
+    \end{minipage}
+};
+%------------ CANVIS COORDENADES ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Canvis de Coordenades};
+\end{tikzpicture}
+
+%------------ ELECTROSTATICA ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $\vec{F}_{q_1q_2}=k\frac{q_1q_2}{d^2}\frac{\vec{r_2}-\vec{r_1}}{||\vec{r_2}-\vec{r_1}||}$ \qquad
+    $\vec{E}_q(\vec{r}) = \frac{kq}{|\vec{r}-\vec{r}_q|^2}\frac{(\vec{r}-\vec{r}_q)}{||\vec{r}-\vec{r}_q||}$ \\
+    $\vec{F}=q\vec{E}$ \qquad
+    $\vec{p}=q\vec{l}$ \qquad
+    $\vec{M}=\vec{p}\times\vec{E}$\\
+    $\int_{Q}d\vec{E}=k\int_{Q}\frac{dq}{|\vec{r}-\vec{r}'|}\frac{(\vec{r}-\vec{r}')}{||\vec{r}-\vec{r}'||}$ \\
+    $\Phi = \vec{E}\cdot\vec{S}$ \qquad
+    $\Phi = \int_S \vec{E}d\vec{S}$ \\
+    	\begin{tabular}{lp{4cm} l}
+            	\textit{Llei de Gauss} 			& $\oint_S\vec{E}d\vec{S}=\frac{q_{int}}{\varepsilon_o}$\\ 
+		\textit{Forma diferencial} 			& $\nabla \cdot \vec{E}=\frac{\rho}{\varepsilon_o}$\\ 
+	\end{tabular}
+    $W = \int_C \vec{F}d\vec{r} = -\Delta U$\\
+    $\Delta V = -\int \vec{E}d\vec{r}$ \qquad
+    $dV=-\vec{E}d\vec{r}=\Delta{V}$  \\
+    $\vec{E}=-\vec{\nabla}V$ \qquad
+    $\Gamma= \oint_C\vec{E}d\vec{l} = \int_S(\vec{\nabla}\times \vec{E})$ = 0 \\
+    \textit{rot }$\vec{E} = \frac{\Gamma}{dS} = \vec{\nabla}\times \vec{E}$\\
+    $U=\frac{\varepsilon_0}{2}\int |\vec{E}|^2dV$\qquad 
+    $\eta_E = \frac{1}{2}\varepsilon_0 |\vec{E}|^2$
+    \end{minipage}
+};
+%------------ ELECTROSTATICA ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Electrostatica};
+\end{tikzpicture}
+
+%------------ CONDUCTORS ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+   $V= \frac{kQ}{r}$\\
+   $C=\frac{Q}{V}$
+    \end{minipage}
+};
+%------------ CONDUCTORS ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Conductors};
+\end{tikzpicture}
+
+%------------ CORRENT ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+  	$I = \frac{dq}{dt} = nqvS = \int_S\vec{j}\cdot d\vec{S} = \sigma ES$\\
+	$\vec{j} = nq\vec{v} = \sigma E$\\
+	$\rho_i = q_in_i$\\
+	\begin{tabular}{lp{4cm} l}
+            	\textit{Equacio de continuitat} 			& $j_2s_2 - j_1s_1=-\frac{dQ}{dt}$\\ 
+	\end{tabular}
+	$\Delta V = El$\\
+	$\frac{\Delta V}{I} = R$\\
+	$\rho = \frac{1}{\sigma}$ \qquad
+	$R = \rho\frac{l}{S}$
+    \end{minipage}
+};
+%------------ CORRENT ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Corrent};
+\end{tikzpicture}
+
+%------------ MAGNETISME ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    	$\oint_C \vec{B} d\vec{l} = \mu_0I$\\
+  	$\vec{B} = \int_l d\vec{B} = \frac{\mu_o}{4\pi}\int_l \frac{Id\vec{l}\times\vec{r}}{r^3}$\\
+	$\vec{B}(\vec{r_p}) = \frac{\mu_o}{4\pi}q \frac{\vec{v}\times\vec{r}}{r^3}$\\
+	$\oint \vec{B} dS = 0$\\
+	$\varepsilon = -\frac{\partial \Phi_B}{\partial t}$\\
+	$\vec{F} = I\vec{d'}\times \vec{B}$\\
+	$I = \frac{\varepsilon}{R}$\\
+	$P = I^2R$\\
+	$\oint_C \vec{B}\cdot d\vec{l} = \mu_0I_0$\\
+	$\eta_B = \frac{1}{2\mu_0} |\vec{B}|^2$\\
+	$m = I\vec{S}\times\vec{B}$
+    \end{minipage}
+};
+%------------ MAGNETISME ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Magnetisme};
+\end{tikzpicture}
+
+%------------ ELECTROMAGNETISME ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    	$\oint_C \vec{B} d\vec{l} = \mu_0I+\mu_0\varepsilon_0\frac{\partial \Phi_E}{\partial t}$\\
+	$\oint_C\vec{E} d\vec{l} = -\frac{\partial \Phi_B}{\partial t}$\\
+	\begin{tabular}{lp{4cm} l}
+            	\textit{Equacions de Maxwell} 			& $\vec{\nabla}\cdot \vec{E} = \frac{\rho}{\varepsilon}$\\ 
+										& $\vec{\nabla}\cdot \vec{B} = 0$\\ 
+										& $\vec{\nabla}\times \vec{E} = -\frac{\partial\vec{B}}{\partial t}$\\
+										& $\vec{\nabla}\times \vec{B} = \mu_0\vec{j}+\mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}$\\
+	\end{tabular}
+    \end{minipage}
+};
+%------------ ELECTROMAGNETISME ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Electromagnetisme};
+\end{tikzpicture}
+
+%------------ DIELECTRICS ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    	$\sigma_b = \vec{P}\cdot \hat{n}$\qquad
+	$\rho_b = -\vec{\nabla}\cdot \vec{P}$\\
+	$\vec{P} = \varepsilon_0 \chi \vec{E}$\\
+	$\vec{D} = \varepsilon_0 \varepsilon_r \vec{E}$\qquad
+	$\varepsilon_r = 1 + \chi$\\
+	$\vec{S} = \vec{E}\times \vec{H} = \frac{1}{\mu}\vec{E}\times\vec{B} $
+    \end{minipage}
+};
+%------------ DIELECTRICS ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Dielectrics};
+\end{tikzpicture}
+
+%------------ CONSTANTS I UNITATS ---------------------
+
+\begin{tikzpicture}
+\node [mybox] (box){
+    \begin{minipage}{0.3\textwidth}
+    \small{
+        	\begin{tabular}{lp{4cm} l}
+		$k=\num{9e9}$						& \textit{Const de Coulomb} $[\frac{Nm^2}{C^2}]$\\
+		$e=\num{-1.602e-19}$				& \textit{Càrrega Electró} $[C]$\\
+            	$\vec{p}$ 							& \textit{Moment dipolar $[Cm]$}\\ 
+            	$\vec{M}$							& \textit{Moment de forces $[Nm]$}\\ 
+		$\vec{E}$							& \textit{Camp Elèctric $[\frac{N}{C}]$}\\ 
+		$\Phi$							& \textit{Flux Elèctric $[\frac{Nm^2}{C}]$}\\ 
+		$\varepsilon_0=  \num{8.8541e-12}$		& \textit{Permitivitat buit$[\frac{C^2}{Nm^2}]$}\\
+		$W$								& \textit{Treball $[Nm]$}\\ 
+		$V$								& \textit{Potencial $[V]$}\\
+		$n$								& \textit{portadors per $m^3$}\\
+		$v$								& \textit{velositat $[\frac{m}{s^2}]$}\\
+		$\vec{j}$							& \textit{vector densitat de corrent$[?]$}\\
+		$\rho$							& \textit{resistivitat$[\si{\ohm} m]$}\\
+		$\sigma$							& \textit{conductivitat $[\frac{S}{m}]$}\\
+		$\sigma_b$						& \textit{dens superficial de C $[\frac{C}{m^2}]$}\\
+		$\rho_b$							& \textit{dens volumica de C $[\frac{C}{m^2}]$}\\
+	\end{tabular}
+    }
+	\end{minipage}
+};
+%------------ Gaussian Integral Header ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Constants i Unitats};
+\end{tikzpicture}
+
+\end{multicols*}
+
+\end{document}
+
+

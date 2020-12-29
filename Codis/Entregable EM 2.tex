@@ -1,0 +1,156 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{array}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Entregable Electromagnetisme 2}
+\date{}
+
+\begin{document}
+	\maketitle
+	\section{} 
+	
+	\textbf{a)} Aquest problema surt directe aplicant la formula ben coneguda 
+	\[
+	\vec{E} = \frac{qk}{||r||^2}\hat{r}
+	\]
+	
+	Sigui $r = P - x_q = (-0.02, 0.04, 0.1)$\\
+	
+	$||r|| = \sqrt{0.02^2+0.04^2+0.1^2} m= 0.012 m$
+	$\hat{r} = \frac{r}{||r||} = \frac{(-0.02, 0.04, 0.1)}{\sqrt{0.012}}$
+	\[
+	\vec{E} = \frac{-4\cdot 10^9 \cdot 9\cdot 10^{-9}}{0.012}\frac{(-0.02, 0.04, 0.1)}{\sqrt{0.012}}=-3000\frac{(-0.02, 0.04, 0.1)}{\sqrt{0.012}} \frac{N}{C}
+	\]
+	
+	\textbf{b)} Tenint en conta la llei de Gauss sabem que $\oint \vec{E}d\vec{S} = \frac{q_in}{\varepsilon_0}$. En primer lloc veurem que el camp creat per un pla infinit a un punt $P$ no depen de la distancia d'aquest punt al pla. 
+	
+	Considerem el pla i un cilindre amb eix paralel al vector superficie del mateix i de llargada 2r, on r es la distancia entre el pla i el punt a avaluar. Aplicant la llei de Gaus sobre aquest cilindre i tenint en conte que les linees de camp electric son paraleles als cantons del cilindre tenim que
+	\[
+	\oint_S\vec{E}d\vec{S}=\vec{E}2\pi r^2=\frac{\pi r^2 \sigma}{\varepsilon_0}
+	\]
+ 
+ 	I per tant aillant $E$, i considerant $\hat{s}$ el vector perpendicular al pla i unitari es veu que 
+	\[
+	\vec{E} = \frac{\sigma}{2\varepsilon}\hat{s}
+	\]
+	
+	Ara que hem vist que no depen del pla, amb el teorema de superposicio el calcul del camp en el punt P es facil i es redueix en una suma de camps creats pels diferents plans en la direccio del vector suma dels dos vectors perpendiculars als plans.
+	
+	\[
+	2\cdot\frac{5\cdot 10^{-6}}{2\varepsilon_0}(-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}, 0) = (-7.98\cdot10^9,7.98\cdot10^9, 0)  \frac{N}{C}
+	\]
+	
+	\textbf{c)} Aplicant la mateixa idea que en el apartat anterior, si encerclem aquesta distribucio recilinea de carrega amb un cilindre, al ser les linees de camp paraleles amb les de la seva superficie la integral passa a ser un producte de la superficie per el camp. 
+	
+	Així doncs tenim que si R es el radi del cilindre i L la longitud de la distribucio(infinita)
+	\[
+	\oint_S\vec{E}d\vec{S} = \vec{E}2\pi RL = \frac{L\lambda}{\varepsilon_0}
+	\]
+	
+	I per tant el camp en un punt a distancia R de la distribucio de carrega es de la forma
+	
+	\[
+	\vec{E} = \frac{\lambda}{\varepsilon_0 2\pi R}
+	\]
+	
+	Ara considerem el cas plantejat al enunciat, es a dir, un punt P a distancia $\sqrt{8^2+6^2} = 10cm = 0.1m$ en direcció radial
+	
+	\[
+	\vec{E} = \frac{2\cdot 10^{-9}}{\varepsilon_0 2\pi 10^{-1}}(\frac{4}{5}, 0, -\frac{3}{5}) = 359.5(\frac{4}{5}, 0, -\frac{3}{5})=(287, 0, -215) \frac{N}{C}
+	\]
+	
+	\textbf{d)} En aquest apartat es pot veure que el punt se situa dins de una esfera carregada nomes en la seva superficie. Considerem una esfera de radi r i centre el mateix que la esfera carregada on r es la distancia del punt P al centre de la esfera. Aquesta esfera se situara al interior de l'altra, i si apliquem la llei de Gauss podrem veure quin es la forma del camp a la seva superficie. 
+	
+	La llei de Gauss ens diu que $\oint_S\vec{E}d\vec{S} = \frac{q_{int}}{\varepsilon_0}$, pero dins de la esfera no hi ha carrega i per tant es pot deduir que el camp electric en el punt P es 0.
+	\[
+	\vec{E} = (0,0,0) \frac{N}{C}
+	\]
+
+	\newpage
+	\textbf{e)} Al igual que al cas anterior, considerem la esfera de radi r i centre el mateix que la esfera carregada on r es la distancia del punt P al centre de la esfera. En aquest cas la esfera interior no tindra carrega interior nula. 
+	
+	Caldrà calcular doncs el camp de un punt p a una distancia $r$ del centre de la esfera de radi $R(r < R$ ja que el punt P se situa dins de la esfera). Aplicant la llei de Gauss veiem el seguent.
+	\[
+	\oint_S\vec{E}d\vec{S} = 4\pi r^2 \vec{E}= \frac{q_{int}}{\varepsilon_0} = \frac{4 \pi \rho r^3}{3 \varepsilon }
+	\]
+	
+	I per tant aillant $\vec{E}$
+	\[
+	\vec{E} = \frac{\rho r}{\varepsilon_0}
+	\]
+	
+	Aplicant-ho al nostre P i la nostra esfera, i tenint en conte que la distancia entre P i el centre de la elipse $r=\sqrt{2^2+2^2+2^2} = 3.46cm = 0.035m$ ens dona el seguent $\vec{E}$.
+	\[
+	\vec{E} = \frac{5\cdot 10^{-6}\cdot 3.5\cdot 10^{-2}}{\varepsilon_0} (\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}})= 1.98\cdot 10^4 (\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}})
+	\]
+	\[
+	\vec{E} = (1.14\cdot 10^4, 1.14\cdot 10^4, 1.14\cdot 10^4) \frac{N}{C}
+	\]
+	
+	\textbf{f)} Aquest cas es molt semblant al fet al apartat \textbf{c)} ja que ens especifica que $L \gg R$ i per tant podem considerar que les linies de camp son paraleles a les de superficie si agafem com a superficie tancada un cilindre de radi R, on R es la distancia del centre del cilindre interior al punt P. En aquest cas es calcula facil el camp en el punt P i es de la forma
+	\[
+	\oint_S\vec{E}d\vec{S} = 2\pi RL \vec{E} = \frac{q_{int}}{\varepsilon_0} = \frac{\pi R^2L\rho}{\varepsilon_0}
+	\]
+	
+	I per tant aillant $\vec{E}$
+	\[
+	\vec{E} = \frac{R\rho}{2\varepsilon_0}
+	\]
+	
+	Tenint en compte que la direccio del vector $\vec{E}$ es radial i que la distancia del punt P al centre del cilindre es $R=\sqrt{3^2 + 4^2} = 5cm = 0.05m$ podem deduir que 
+	\[
+	\vec{E} = \frac{5\cdot 10^{-2} \cdot 4\cdot10^{-12}}{2\varepsilon_0} (0, 3/5, 4/5)= 113(0, 3/5, 4/5) = (0, 67.8, 90.4) \frac{N}{C}
+	\]
+
+	\newpage
+	\textbf{g)} Amb el mateix raonament anterior, el que ara tenint en conte que $q_{int} = 2\pi\int_0^r\alpha s^2 ds$ es pot trobar el camp buscat
+	\[
+	q_{int} = 2\pi L\int_0^r\alpha s^2 ds = 2\pi L\alpha\frac{r^3}{3}
+	\]
+	
+	I amb la mateixa informacio que en \textbf{f)} i sabent que el punt se situa dins del cilindre
+	\[
+	\oint_S\vec{E}d\vec{S} = 2\pi rL \vec{E} = \frac{q_{int}}{\varepsilon_0} = \frac{2\pi L\alpha r^3}{3\varepsilon_0}
+	\]
+	
+	I d'aqui directament es veu que amb $r = 0.03m$
+	\[
+	\vec{E} = \frac{\alpha r^2}{3\varepsilon_0}(0, 1, 0) = \frac{4\cdot 10^{-12} \cdot 0.03^2}{3\cdot \varepsilon_0}(0, 1, 0) = (0, 1.35\cdot 10^{-4}, 0) \frac{N}{C}
+	\]
+	
+	\section{}
+	
+	Aquest problema surt gaireve directe si considerem la forma diferencial de la llei de Gauss, es a dir que
+	\[
+	\vec{\nabla} \cdot \vec{E}=\frac{\rho}{\varepsilon_o}
+	\]
+	I per tant $\rho = \varepsilon_o (\vec{\nabla} \cdot \vec{E})$. Aixo es cert per totes les coordenades aixi que farem el calcul amb les mateixes coordenades donades, es a dir, les coordenades esferiques. En les coordenades esferiques el operador nabla es de la forma $\nabla = (\frac{1}{r^2}\frac{\partial r^2}{\partial r}, \frac{1}{r\sin{\theta}}\frac{\partial \sin{\theta}}{\partial \theta},\frac{1}{r\sin{\theta}} \frac{\partial}{\partial \varphi})$
+	\[
+	\vec{\nabla} \cdot \vec{E} = \frac{1}{r^2}\frac{\partial E_r r^2}{\partial r} +  \frac{1}{r\sin{\theta}} \frac{\partial E_{\theta}\sin{\theta}}{\partial \theta} +  \frac{1}{r\sin{\theta}} \frac{\partial E_{\varphi}}{\partial \varphi} = -\frac{6\alpha \cos{\theta}}{r^5} + \frac{2\alpha \cos{\theta}}{r^5}
+	\]
+	
+	I el resultat final es 
+	\[
+	\rho = -\frac{4\varepsilon_o\alpha \cos{\theta}}{r^5}	\frac{C}{m^3}
+	\]
+
+	
+	
+	
+
+
+\end{document}

@@ -1,0 +1,134 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyvrb}
+\usepackage{circuitikz}
+\usepackage{indentfirst}
+\usepackage{verbatimbox}
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\graphicspath{ {./images/} }
+
+%% 
+%% AMPL definition (c) 2007 Mirko Maischberger 
+%% 
+\lstdefinelanguage{AMPL}{ 
+alsoletter={.},% 
+morekeywords={Current,IN,INOUT,Infinity,Initial,LOCAL,OUT,all,binary,% 
+by,check,complements,contains,default,dimen,div,else,environ,exists,% 
+forall,if,in,integer,less,logical,max,min,option,setof,shell_exitcode,% 
+slve_exitcode,solve_message,solve_result,solve_result_num,suffix,sum,% 
+symbolic,table,then,union,until,while,within,from,to,obj,% 
+cross,diff,symdiff,inter,% 
+and,not,or,prod,product},%keywords 
+morekeywords=[2]{abs,acos,acosh,alias,asin,asinh,atan,atan2,atanh,ceil,% 
+ctime,cos,exp,floor,log,log10,max,min,precision,round,sin,sinh,sqrt,tan,% 
+tanh,time,trunc,% 
+Beta,Cauchy,Exponential,Gamma,Irand224,Normal,Normal101,Poisson,% 
+Uniform,Uniform01,% 
+num,num0,ichar,char,length,substr,sprintf,match,sub,gsub,% 
+card,next,nextw,prev,prevw,first,last,member,ord,ord0,arity,indexarity,% 
+interval,integer,ordered,circular,coeff,cover},%functions 
+morekeywords=[3]{set,param,var,arc,minimize,maximize,subject to,% 
+node,subjto,s.t.},%declarations 
+morekeywords=[4]{call,cd,check,close,commands,data,delete,display,drop,end,% 
+environ,exit,expand,fix,include,let,load,model,objective,option,print,% 
+printf,problem,purge,quit,read,read table,redeclare,reload,remove,reset,% 
+restore,shell,show,solexpand,solution,solve,update,unfix,unload,write,% 
+write table,xref},%commands 
+sensitive=true,% 
+morecomment=[s]{/}{/},% 
+morecomment=[l]\#,% 
+morestring=[d]",% 
+morestring=[d]'% 
+}[keywords,comments,strings]% 
+
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{}
+\title{Problema de l'horari d'una lliga esportiva}
+\date{29 de Novembre del 2020}
+
+\begin{document}
+	\maketitle
+	\begin{center}
+		\begin{tabular}{ |c | c  c |}
+			\hline
+			\textbf{Nom} 		& \textbf{DNI}		& \textbf{Conjunt de dades} \\ \hline
+			Rubén Aciego 		&48038376R 		 		& 1  			\\ 
+			Daniel Vilardell 		&48109585W 		& 65\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\tableofcontents
+	
+	\newpage
+	\section{Formulació matematica del problema}
+	
+	Considerem en primer lloc les variables d'entrada del problema, n seran el nombre d'equips, r el nombre de partits de cada equip amb equips de la mateixa regió i s el nombre de partits de cada equip amb  equips de la regió contraria.
+	
+	Definim la constant $jorn = r(\frac{n}{2} - 1)+\frac{sn}{2}$	
+	i els conjunts U, V de la següent forma \\
+	
+	\begin{itemize}
+		\item$U = \{(i, j, k) \in \mathbb{N}^3 | jorn >= k >= 2, 0 < i <= n/2, 0 < j <= n/2\}$ 
+		\item$V = \{(i, j, k) \in \mathbb{N}^3 | jorn >= k >= 2, n >= i > n/2, n >= j > n/2\}$
+	\end{itemize}
+	
+	Per tant, si $i$ i $j$ son els valors de 2 equips i k la jornada, els conjunts U i V contenen totes les combinacions de partits entre dos equips intraterritorials a les jornades més grans o iguals que 2 de les dues regions respectivament. Amb aquesta informació podem formular ja el problema.
+	
+	\begin{align*}
+	PL \colon	 max \sum_{(i, j, k) \in U\cup V}& 2^{k - 2}\cdot X_{ijk} \\	
+			& X_{ijk} = X_{jik} 			& \forall \text{ }0 < i, j \leqslant n, 0 &< k <= jorn\\
+			& \sum_{i=1}^n X_{ijk} = 1 	& \forall \text{ }0 < j \leqslant n, 0 &< k  <= jorn\\
+			& \sum_{k=1}^{jorn} X_{ijk} = r	& \forall \text{ }0 < i, j \leqslant &n/2, i \neq j\\
+			& \sum_{k=1}^{jorn} X_{ijk} = r 	& \forall \text{ }n/2 < i, j& \leqslant n, i \neq j\\
+			& \sum_{k=1}^{jorn} X_{ijk} = s	& \forall 0 < i \leqslant n/2,& n/2 < j \leqslant n\\
+			& X_{ijk} \in {0, 1} 			& \forall \text{ }0 < i, j \leqslant n, 0 &< k <= jorn\\
+	\end{align*}
+	
+	Veiem que estem maximitzant la funció donada nomes per les $k \geq 2$ i pels equips que estan dins de la mateixa regió tal i com ens demana l'enunciat. La primera restricció considerada es la de simetria, si $i$ juga amb $j$ el dia $k$, $j$ juga amb $i$ el mateix dia. La segona restricció assegura que cada equip només fa un partit per jornada. Les restriccions 3 i 4 asseguren que el nombre de partits que juga cada equip contra cada equip de la seva mateixa divisió és $r$, mentres que la següent restricció, la 5,  assegura que cada equip jugui $s$ cops contra cada equip de la regió contraria. Finalment l'última restricció fa que les variables considerades en el nostre problema siguin binàries, ja que només indiquen si $i$ juga amb $j$ la jornada $k$, i per tant només poden prendre dos valors.
+	
+	\newpage
+	\section{Codis}
+	
+	\subsection{Fitxer .mod}
+	\lstinputlisting[language=AMPL, basicstyle=\tiny]{practica2mod.txt}
+	
+	\subsection{Fitxer .dat}
+	\lstinputlisting[language=AMPL, basicstyle=\tiny]{practica2dat.txt}
+	
+	\subsection{Fitxer .run}
+	\lstinputlisting[language=AMPL, basicstyle=\tiny]{practica2run.txt}
+	
+	\section{Solucions}
+	\subsection{Cas n = 6, r = 4, s = 2}
+	\lstinputlisting[basicstyle=\small]{Solucions1}
+	
+	\newpage
+	\subsection{Cas n = 8, r=1, s=5}
+	\lstinputlisting[basicstyle=\small]{Solucions2}
+
+
+\end{document}

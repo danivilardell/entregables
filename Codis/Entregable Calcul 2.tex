@@ -1,0 +1,447 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Entregable Càlcul Diferencial}
+\date{}
+
+\begin{document}
+	\maketitle
+	\section{Problema 1}
+	
+	\textbf{a)} Es pot comprovar facilment subtituint.
+	\[
+	\Phi_a(1,-1,0,2)=(1(0)^2+-1\cdot2-0a+2, 2(1)^2(-1)^3-0(2)^2-a(-1+1)+2)=(0,0)
+	\]
+	
+	\textbf{b)}
+	Haurem de veure que compleix les hipotesis del Th de la funció implicita. Primer de tot com hem vist en lapartat a) el punt $p$ anula la funció $\Phi$.
+	Despres hem de veure que el seguent determinant en el punt $p$ es diferent de 0.
+	\[
+	\begin{vmatrix}
+		\frac{\partial \Phi_1}{\partial x} 	&\frac{\partial \Phi_1}{\partial t}\\
+		\frac{\partial \Phi_2}{\partial x} 	&\frac{\partial \Phi_2}{\partial t}
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+		z^2		&y\\
+		4xy^3	&2zt
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+		0	&-1\\
+		-4	&0
+	\end{vmatrix}
+	= -4 \ne 0
+	\]
+	Com que es compleixen les hipotesis del teorema mencionat $\forall a \in \mathbb{R}$ i per tant es pot aillar $x$ i $t$ en funció de $y$ i $z$ en un entorn del punt $p$.
+	
+	En llenguatge i notació del teorema de la funció implicita qué $\exists$ oberts, $(1,-1,0,2)\in U\subseteq \mathbb{R}^4$ i $a=(-1,0)\in \mathbb{R}^2 $
+	i una funció $g : \mathbb{R}^2\rightarrow \mathbb{R}^2$(anomenada implícita), tal que det$\frac{\partial{f}_i}{\partial y_j(z)}_{i,j=1,2}=0, \forall z \in U$.
+	A mes $g \in C^r(\mathbb{R}^2)$ i $\phi(-1,0)=(1,2)$.
+	
+	\textbf{c)} Per a calcular els primers quatre valors recorrerem a la derivació implícita de forma matricial amb $x=g_1(y,z)$ i $t=g_2(y,z)$ que ens diu que 
+	en el punt en questiós
+	
+	\[
+	\begin{pmatrix}
+		\frac{\partial g_1}{\partial y} 	&\frac{\partial g_1}{\partial z}\\
+		\frac{\partial g_2}{\partial y} 	&\frac{\partial g_2}{\partial z}
+	\end{pmatrix}
+	=
+	-
+	\begin{pmatrix}
+		\frac{\partial \Phi_1}{\partial x} 	&\frac{\partial \Phi_1}{\partial t}\\
+		\frac{\partial \Phi_2}{\partial x} 	&\frac{\partial \Phi_2}{\partial t}
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+		\frac{\partial \Phi_1}{\partial y} 	&\frac{\partial \Phi_1}{\partial z}\\
+		\frac{\partial \Phi_2}{\partial y} 	&\frac{\partial \Phi_2}{\partial z}
+	\end{pmatrix}
+	=
+	-
+	\begin{pmatrix}
+		0	&-1\\
+		-4	&0
+	\end{pmatrix}^{-1}
+	\begin{pmatrix}
+		t		&2xz-a\\
+		6x^2y^2-a	&-t^2
+	\end{pmatrix}
+	=
+	\]
+	\[
+	\begin{pmatrix}
+		0	&\frac{1}{4}\\
+		1	&0
+	\end{pmatrix}
+	\begin{pmatrix}
+		2	&-a\\
+		6-a	&-4
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\frac{	6-a}{4}	&-1\\
+		2	&-a
+	\end{pmatrix}
+	\]
+	\newpage
+	Per a trobar la segona derivada de t respecte de y farem derivació implicita dos cops directament de $f_1$, l'equació donada al enunciat.
+	\begin{equation}
+	\begin{split}
+	z^2g_1+yg_w-az+2=0\\
+	z^2\frac{\partial g_1}{\partial y}+\frac{\partial g_2}{\partial y}+y\frac{\partial g_2}{\partial y}=0\\
+	z^2\frac{\partial^2 g_1}{\partial y^2}+\frac{\partial g_2}{\partial y}+\frac{\partial g_2}{\partial y}+y\frac{\partial^2 g_2}{\partial y^2}=0\\
+	\frac{\partial^2 g_2}{\partial y^2}=-2\frac{\partial g_2}{\partial y}\frac{1}{-y}=4
+	\end{split}
+	\end{equation}
+	
+	Aplicarem el mateix procediment per a trobar la segona derivada de x respecte de y en $f_2$.
+	\begin{equation}
+	\begin{split}
+	2g_1^2y^3-zg_2^2-a(y+1)+2&=0\\
+	6y^2g_1^2+4y^3g_1\frac{\partial g_1}{\partial y}-2zg_2\frac{\partial g_2}{\partial y}-a&=0\\
+	12yg_1^2+12y^2g_1\frac{\partial g_1}{\partial y}+12y^2g_1\frac{\partial g_1}{\partial y}
+	+4y^3\frac{\partial g_1}{\partial y}^2+4y^3g_1&\frac{\partial^2 g_1}{\partial y^2}-2z\frac{\partial g_2}{\partial y}^2
+	-2zg_2\frac{\partial^2 g_2}{\partial y^2}=0\\
+	-12+12\frac{\partial g_1}{\partial y}+12\frac{\partial g_1}{\partial y}-4\frac{\partial g_1}{\partial y}^2-4
+	\frac{\partial^2 g_1}{\partial y^2}&=0\\
+	-12+24\frac{6-a}{4}-\frac{(6-a)^2}{4}-4\frac{\partial^2 g_1}{\partial y^2}&=0\\
+	\frac{\partial^2 g_1}{\partial y^2}=-\frac{a^1+12a-60}{16}
+	\end{split}
+	\end{equation}
+	
+	\textbf{d)}  Per a veure per quins valors de a calcularem el determinant del Jacovià de la funció $g(y,z)$ i veurem quan s'anula
+	\[
+	\begin{vmatrix}
+		\frac{	6-a}{4}	&-1\\
+		2			&-a
+	\end{vmatrix}
+	=
+	\frac{	-6a+a^2}{4}+2=\frac{a^2-6a+8}{4}=\frac{(a-4)(a-2)}{4}
+	\]
+	Que això s'anula per $a=4$ i per $a=2$ i per tant en aquests punts $\nexists$ la inversa. Com hem comentat abans $g\in C^r$ i a mes 
+	$p\in \mathbb{R}^2$ es un obert per tant $\exists$ inversa en tot punt diferent dels que tenen $a=2$ i $a=4$.
+	
+	En termes i llenguatge de la funció implicita això significa que $\exists U\in \epsilon_a, U\subseteq \mathbb{R}^2$ tal que 
+	$f|_U:U \rightarrow \mathbb{R}^n$ és injectiva i det$(Dg(z))\ne 0 \forall z \in U.$ A mes $V =f(U) \subseteq \mathbb{R}^2$ es obert i la inversa
+	$f^{-1}:V \rightarrow U$ es $C^r(V)$ i $Dg^{-1}(y_0)=(Dg(g^{-1}(y_0))^{-1}$.
+	
+	\textbf{e)} Seguint el procediment del apartat a buscarem per quins valors de a s'anula el determinant
+	\[
+	\begin{vmatrix}
+		\frac{\partial \Phi_1}{\partial y} 	&\frac{\partial \Phi_1}{\partial z}\\
+		\frac{\partial \Phi_2}{\partial y} 	&\frac{\partial \Phi_2}{\partial z}
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+		t		&2xz-a\\
+		6x^2y^2-a	&-2t
+	\end{vmatrix}
+	=
+	\begin{vmatrix}
+		2		&-a\\
+		6-a		&-2t
+	\end{vmatrix}
+	=-a^2+6a-8=-(a-4)(a-2)
+	\]
+	
+	I que per tant nomes s'anula quan $a=2$ o quan $a=4$, els mateixos punts on no $\exists$ la inversa de $g$.
+	
+	El fet de que ens hagin donat els mateixos resultats es deu a que al trobar la funció implicita hem posat $y,z$ en funció de $x$ i $t$
+	i quan hem fet la inversa de $g$ que era la funció que calculava $x,t$ en funció de $y$ i $z$ la funció aquesta ha passat a ser una funció 
+	en la que la imatge es trobava en funció de $x$ i $t$ i per tant existeix en els mateixos punts en els que es pot trovar 
+	$y,z$ en funció de $x$ i $t$.
+	
+	
+	\newpage
+	\section{Problema 2}
+	
+	\textbf{a)} Per a demostrar que $f$ és glovalment injectiva primer suposarem que no ho és i arribarem a una contradicció. 
+	
+	Si no
+	és injectiva $\exists x,y \in \mathbb{R}^n, x\ne y | f(x)=f(y) \implies ||f(x)-f(y)||=0\ge C||x-y||$. Com que $C>0$, $||x-y||=0 \implies x=y$ que es
+	una contradicció ja que haviem suposat que $x\ne y$ i per tant es glovalment injectiva.
+	
+	Per a veure que det$(Jf(z))\ne 0 \forall z \in \mathbb{R}^n$ suposarem que el rang de $Df(z)$ no es màxim i arribarem a una contradicció.
+	Com que el rang no es màxim $\exists v\ne0 \in \mathbb{R}^n | Df(z)v=0$. Com que $f\in C^1$ tenim que si $Df(z)v=0 \implies D_vf(z)=0$ i per tant
+	
+	\[
+	0=\lim_{h \to 0}\frac{f(z-hv)-f(z)}{h}\geq \lim_{h \to 0}\frac{C||z-hv-z||}{h}=
+	\]
+	\[
+	\lim_{h \to 0}\frac{C||hv||}{h}=\lim_{h \to 0}\frac{Ch||v||}{h}=C||v||
+	\]
+	
+	Com que $C >0$ la unica manera de que es compleixi tal condició seria si $v$ fos 0 pero seria una contradicció ja que haviem suposat que $v\ne0$.
+	I per tant det$(Jf(z))\ne 0 \forall z \in \mathbb{R}^n$.
+	
+	\textbf{b)} Primer demostrarem una idea que usarem mes tard, que $| ||u||-||v|| | \leq ||u-v||$.
+	\[
+	||u||=||u+v-v||\leq ||v||+||u-v|| \implies ||u||-||v||\leq ||u-v||
+	\]
+	\[
+	||v||=||v+u-u||\leq ||u||+||v-u|| \implies ||v||-||u||\leq ||u-v||
+	\]
+	
+	I per tant $| ||u||-||v|| | \leq ||u-v||$.
+	
+	Despres veurem que es continua per a demostrar que el conjunt es tancat ja que si és continua la antiimatge d'un tancat es un tancat.
+	
+	Com que $f$ és continua tenim que en tot punt $p$ de $\mathbb{R}^n$
+	
+	\[
+	\forall \varepsilon > 0 \exists \delta >0| \forall x\in \mathbb{R}^n, ||x-p|| < \delta \implies ||f(x) - f(p)|| < \varepsilon
+	\]
+	
+	I el que volem demostrar és que
+	
+	\[
+	\forall \varepsilon > 0 \exists \delta >0| \forall x\in \mathbb{R}^n, ||x-p|| < \delta \implies |\varphi(x) - \varphi(p)| < \varepsilon
+	\]
+	\[
+	|\phi(x) - \phi(p)| = |||f(x)-z)|| - ||f(p)-z||| \leq ||f(x)-z-f(p)+z||=||f(x)-f(p)|| < \varepsilon
+	\]
+	I per tant queda demostrat. Aleshores es tancat perquè és la antiimatge de la funció continua $\varphi$ en el conjunt tancat $[0,\alpha]$.
+	
+	Finalment per a demostrar que es compacte demostrarem que es fitat veient que $A\subseteq \bar{B}(x_o,\frac{2\alpha}{C})$. 
+	
+	Suposem que no i per tant $\exists x\in \mathbb{R}^n | x\in A, ||x-x_o|| > \frac{2\alpha}{C}$.
+	
+	\[
+	\alpha \geq ||f(x)-z|| = ||f(x)-f(x_o)-(z-f(x_o))|| \geq |||f(x)-f(x_o)||-||z-f(x_o)|||
+	\]
+	\[
+	||f(x)-f(x_o)|| \geq C||x-x_o|| > C\frac{2\alpha}{C}=2\alpha
+	\]
+	\[
+	|||f(x)-f(x_o)||-||z-f(x_o)||| > 3\alpha \implies \alpha \geq ||f(x)-z||> 3\alpha
+	\]
+	
+	I per tant arribem a una contradicció que demostra que $A\subseteq \bar{B}(x_o,\frac{2\alpha}{C})$. Així doncs el conjunt $A$ és compacte.
+	
+	\textbf{c)} En primer lloc veurem que la funció $\varphi$ te minim gloval. Podem assegurar que te minim en $A$ ja que aquest conjunt es compacte i 
+	$\varphi$ es contínua i a més aquest compleix que $\varphi(x) \leq \alpha$. Com que tots els punts fora de $A$ compleixen que $\varphi(x) > \alpha$ aquest 
+	minim que anomenarem x no es nomes minim de $A$ sinó que és el minim absolut. Per tant també es minim absolut de $\varphi^2$.
+	
+	Ara seguirem un argument semblant al de la demostració del Teorema de la funció Inversa. 
+	
+	Com que el punt $x$ és un minim $\frac{\partial \varphi^2}{\partial x_i} (x)=0$ $ \forall i=1,2,...,n$.
+	
+	\[
+	\frac{\partial \varphi^2}{\partial x_i} (x)=2(f_1(x)-z_1)\frac{\partial f_1}{\partial x_i} +\hdots+2(f_n(x)-z_n)\frac{\partial f_n}{\partial x_i}=0
+	\]
+	\[
+	\frac{\partial \varphi^2}{\partial x_i} (x)=2(f_1(x)-z_1, \hdots, f_n(x)-z_n)
+	\begin{pmatrix}
+	\frac{\partial f_1}{\partial x_i}\\
+	\vdots\\
+	\frac{\partial f_n}{\partial x_i}
+	\end{pmatrix}
+	(z)=0
+	\]
+	\[
+	\implies \frac{\partial \varphi}{\partial x_i} (x)=2(f_1(x)-z_1, \hdots, f_n(x)-z_n)
+	\begin{pmatrix}
+	\frac{\partial f_1}{\partial x_1}	&	\hdots	&\frac{\partial f_1}{\partial x_n}\\
+	\vdots	&	\ddots\\
+	\frac{\partial f_n}{\partial x_1}	&			&\frac{\partial f_n}{\partial x_n}
+	\end{pmatrix}
+	=
+	(0,\hdots,0)
+	\]
+	
+	Com que el jacobià, com hem vist en el apartat a) es diferent de 0, 
+	\[
+	(f_1(x)-z_1, \hdots, f_n(x)-z_n)=(0,\hdots,0)
+	\]
+	
+	I per tant
+	
+	\begin{equation}
+	\begin{split}
+	f_1(x)&=z_1\\
+	\vdots&\\
+	f_n(x)&=z_n\\
+	\end{split}
+	\end{equation}
+	
+	\[
+	\implies f(x)=z
+	\]
+	
+	I per tant, $\forall z\in \mathbb{R}^n$ hem trobat un x tal que $f(x)=z$ i per tant la funció $f$ es glovalment exaustiva.
+	
+	\textbf{d)} Una aplicació $f: U\subseteq \mathbb{R}^n\rightarrow\mathbb{R}^n$ es un difeomorfosme si
+	$f\in C^1(U)$, $f$ es injectiva i det$(Df(x))\ne0\forall x\in U$.
+	
+	En el nostre cas $f$ es glovalment injectiva com hem vist en el apartat a), $f\in C^1$ ja que ens ho diu l'enunciat i 
+	det$(Df(x))\ne0\forall x\in \mathbb{R}^n$ com també hem vist en l'apartat a) i per tant f es un difeomorfisme de
+	$\mathbb{R}^n$ a $\mathbb{R}^n$.
+	
+	\textbf{e)} Per a resoldre aquest apartat usarem la notacio seguent: $p=(x,y,z), p_1=(x_1,y_1,z_1), p_2=(x_2,y_2,z_2)$
+	
+	Definim en primer lloc les funcions
+	\begin{align*}
+	G \colon \mathbb{R}3 & \to \mathbb{R}3\\
+	(x,y,z) & \mapsto (g(y),g(z),g(x))\\
+	H \colon \mathbb{R}3 & \to \mathbb{R}3\\
+	(x,y,z) & \mapsto (h(z),h(x),h(y))
+	\end{align*}
+	\[
+	||f(p_1)-f(p_2)||=||(p_1-p_2)+(G(p_1)-G(p_2))+(H(p_1)-H(p_2))||\geq
+	\]
+	\[
+	\geq ||p_1-p_2||-||(G(p_1)-G(p_2))+(H(p_1)-H(p_2))||
+	\]
+	
+	Considerem el segon terme
+	\[
+	||(G(p_1)-G(p_2))+(H(p_1)-H(p_2))|| \leq ||(G(p_1)-G(p_2))||+||(H(p_1)-H(p_2))||
+	\]
+	
+	Ara veurem que $||(G(p_1)-G(p_2))|| \leq r||p_1-p_2||$
+	\[
+	||(G(p_1)-G(p_2))||=||(g(y_1)-g(y_2),g(z_1)-g(z_2),g(x_1)-g(x_2))||=
+	\]
+	\[
+	=|(|g(x_1)-g(x_2),g(y_1)-g(y_2),g(z_1)-g(z_2))||
+	\]
+	
+	Pel teorema del valor mig $\exists \xi_1, \xi_2, \xi_3$ tal que
+	\[
+	||(g(x_1)-g(x_2),g(y_1)-g(y_2),g(z_1)-g(z_2))||=||(\xi_1(x_1-x_2),\xi_2(y_1-y_2),\xi_3(z_1-z_2))||\leq
+	\]
+	\[
+	\leq||(r(x_1-x_2), r(y_1-y_2),r(z_1-z_2))||=r||p_1-p_2||
+	\]
+	
+	Analogament per H veiem que
+	\[
+	||(H(p_1)-H(p_2))||\leq s||p_1-p_2||
+	\]
+	
+	I per tant 
+	\[
+	||p_1-p_2||-||(G(p_1)-G(p_2))+(H(p_1)-H(p_2))|| \geq ||p_1-p_2||-(r+s)||p_1-p_2||=
+	\]
+	\[
+	=(1-r-s)||p_1-p_2||
+	\]
+	
+	\textbf{e)} Podem veure que es compleixen les condicions del enunciat per $f$, es a dir, que $||f(x)-f(y)||\geq C||x-y||,\forall x,y\in\mathbb{R}^n$ com hem 
+	vist en el apartat anterior i ja que $C=1-r-s>0$ i a mes la funció $f\in C^1$. Per tant hem vist en l'apartat a) que tal funció és glovalment injectiva i en l'apartat c) que 
+	és glovalment exaustiva, per tant la funció és glovalment bijectiva.
+	
+	Calculem el Jacobià 
+	
+	\[
+	Jf(a,b,c)=
+	\begin{pmatrix}
+		1		&g'(b)	&h'(c)\\
+		h'(a)		&1		&g'(c)\\
+		g'(a)		&h'(b)	&1
+	\end{pmatrix}
+	\]
+	
+	Per a veure que el seu determinant no es nul suposarem que si que ho es i arribarem a una contradicció. Si el determinant no es nul, el rang de la matriu no es maxim
+	i per tant $\exists v | Jf(a,b,c)(v)=0$ i per tant
+	\[
+	v_1+v_2g'(b)+v_3h'(c)=0 \implies |v_1|=|v_2g'(b)+v_3h'(c)|\leq r|v_2|+s|v_3|
+	\]
+	\[
+	v_1h'(a)+v_2+v_3g'(c)=0 \implies |v_2|=|v_1h'(a)+v_3g'(c)|\leq s|v_1|+r|v_3|
+	\]
+	\[
+	v_1g'(a)+v_2h'(b)+v_3=0 \implies |v_3|=|v_1g'(a)+v_2h'(b)|\leq r|v_1|+s|v_2|
+	\]
+
+	Si sumem ara els resultats tenim que 
+	\[
+	|v_1|+|v_2|+|v_3|\leq(s+r)(|v_1|+|v_2|+|v_3|)
+	\]
+	
+	Però al enunciat afirma que $s+r<1$ i per tant això es una contracicció $\implies$ det$Jf(a,b,c)\ne 0$
+	
+	Finalment utilitzant la formula que ens dona el teorema de la funció inversa que diu que $Jf^{-1}(f(a,b,c))=(Jf(a,b,c))^{-1}$ calculem la inversa
+	
+	\[
+	Jf^{-1}(f(a,b,c))=
+	\]
+	\[
+	=
+	\frac{
+	\begin{pmatrix}
+		\begin{vmatrix}
+		1		&g'(c)\\
+		h'(b)		&1
+		\end{vmatrix}
+		&
+		-\begin{vmatrix}
+		h'(a)		&g'(c)\\
+		g'(a)		&1
+		\end{vmatrix}
+		&
+		\begin{vmatrix}
+		h'(a)		&1\\
+		g'(a)		&h'(b)
+		\end{vmatrix}\\
+		-\begin{vmatrix}
+		g'(b)		&h'(c)\\
+		h'(b)		&1
+		\end{vmatrix}
+		&
+		\begin{vmatrix}
+		1		&h'(c)\\
+		g'(a)		&1
+		\end{vmatrix}
+		&
+		-\begin{vmatrix}
+		1		&g'(b)\\
+		g'(a)		&h'(b)
+		\end{vmatrix}\\
+		\begin{vmatrix}
+		g'(b)		&h'(c)\\
+		1		&g'(c)
+		\end{vmatrix}
+		&
+		-\begin{vmatrix}
+		1		&h'(c)\\
+		h'(a)		&g'(c)
+		\end{vmatrix}
+		&
+		\begin{vmatrix}
+		1		&g'(b)\\
+		h'(a)		&1
+		\end{vmatrix}
+	\end{pmatrix}^T
+	}{
+	1+g'(a)g'(b)g'(c)+h'(a)h'(b)h'(c)-g'(a)h'(c)-g'(b)h'(a)-g'(c)h'(b)
+	}
+	\]
+	\[
+	=
+	\frac{
+	\begin{pmatrix}
+		1-g'(c)h'(b)	&h'(c)h'(b)-g'(b)		&h'(a)h'(b)-g'(a)\\
+		g'(c)g'(a)-h'(a)	&1-h'(c)g'(a)		&h'(c)h'(a)-g'(c)\\
+		h'(a)h¡(b)-g'(a)	&g'(a)g'(b)-h'(b)		&1-g'(b)h'(a)
+	\end{pmatrix}
+	}{
+	1+g'(a)g'(b)g'(c)+h'(a)h'(b)h'(c)-g'(a)h'(c)-g'(b)h'(a)-g'(c)h'(b)
+	}
+	\]
+	
+\end{document}

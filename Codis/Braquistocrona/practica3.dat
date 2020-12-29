@@ -1,0 +1,6 @@
+#dades problema braquistocrona part c
+
+param n := 100;
+param a := 1;
+param b := 1;
+param eps := 0.01;

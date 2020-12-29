@@ -1,0 +1,88 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Entregable EDOS}
+\date{}
+
+\begin{document}
+	\maketitle
+	\section{Exercici 4}
+	\textbf{d)} L'enunciat ens dona el seguent problema de valors inicials
+	\[
+		y''-2y'+y=te^t; \textrm{  }y(0)=1,y'(0)=0
+	\]
+	
+	Usant les propietats de la transformada de Laplace que ens diuen que 
+	\[
+		\mathcal{L}\{f'(t)\}=sF(s)-f(0), \mathcal{L}\{f''(t)\}=s^2F(s)-sf(0)-f'(0)
+	\]
+	
+	Trovem la tranformada de la equació donada i veiem que
+	\[
+		s^2Y(s)-sy(0)-y'(0)-2(sY(s)-y(0))+Y(s)=\frac{1}{(s-1)^2}
+	\]
+	\[
+		Y(s)(s^2-2s+1)-s+2=\frac{1}{(s-1)^2}
+	\]
+	\[
+	Y(s)=\frac{(s-2)(s-1)^2+1}{(s-1)^4}=\frac{s}{(s-1)^2}-\frac{2}{(s-1)^2}+\frac{1}{(s-1)^4}
+	\]
+	
+	Si descomponem $\frac{s}{(s-1)^2}$ en fraccions simples tenim el seguent
+	\[
+		Y(s)=\left(\frac{1}{(s-1)} + \frac{1}{(s-1)^2}\right)-\frac{2}{(s-1)^2}+\frac{1}{(s-1)^4}
+	\]
+	\[
+		Y(s)=\frac{1}{(s-1)} - \frac{1}{(s-1)^2}+\frac{1}{(s-1)^4}
+	\]
+	
+	I calculem la transformada inversa del resultat trobat que serà la funció en questió
+	\[
+		\mathcal{L}^{-1}\{Y(s)\}(t)=y(t)=e^t-te^t+\frac{t^3e^t}{3!}
+	\]
+	\[
+		y(t)=e^t\left(\frac{t^3}{6}-t+1\right)
+	\]
+	
+	
+	
+	
+	\newpage
+	\section{Exercici 11}
+	\textbf{a)} L'enunciat ens dona un altre problema de valors inicials que diu el seguent
+	\[
+		x''+4x=2\delta(t-\pi); \textrm{  }x(0)=1, x'(0)=0
+	\]
+	
+	Usant la mateixa propietat que en l'exercici 4 fet anteriorment tenim que
+	\[
+		s^2X(s)-sx(0)-x'(0)+4X(s)=2e^{-\pi s}
+	\]
+	\[
+		X(s)=\frac{2e^{-\pi s}+s}{s^2+4}=2e^{-\pi s}\frac{2}{s^2+4}+\frac{s}{s^2+4}
+	\]
+	
+	Tenint en conte que $\mathcal{L}^{-1}\{e^{-as}F(s)\}=f(t-a)u(t-a)$ i coneixent les transformades conegudes de $\sin$ i de $\cos$ tenim que
+	\[
+		\mathcal{L}^{-1}\{X(s)\}(t)=x(t)=sin(2(t-\pi))u(t-\pi)+cos(2t)
+	\]
+	
+	Com que el temps en tal exercici no pot ser negatiu el resultat dona el següent
+	\[
+		x(t)=(sin(2t)u(t-\pi)+cos(2t))u(t)
+	\]
+	
+\end{document}

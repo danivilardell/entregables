@@ -1,0 +1,599 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Entregable Geometria Afí i Euclidea}
+\date{}
+
+\begin{document}
+	\maketitle
+	\section{Problema 1}
+	\textbf{(i)} 
+	\begin{proof}
+		 Tenint en conta que es un gir al voltant d'un punt, podem considerar la matriu de \textit{F} en la referencia $R=\{p; u_1, u_2\}$ on 
+		$p$ es el punt de rotació i $u_1$ i $u_2$ son vectors arvitraris ortonormals, com a
+		\[
+		M(F)= 
+		\begin{pmatrix}
+			c\alpha &	- s\alpha	& 0\\
+			s\alpha  & c\alpha	& 0\\
+			0    & 	0	& 1 
+		\end{pmatrix}
+		\]
+		Per comoditat en els calculs prendrem $u_1=(q_1-p)$ i per tant en aquesta referencia $R$ el punt $q=(1,0)$ i per tant $q_2$ sera de la forma
+		\[
+		q_2=
+		\begin{pmatrix}
+			c\alpha &	- s\alpha	& 0\\
+			s\alpha  & c\alpha	& 0\\
+			0    & 	0	& 1 
+		\end{pmatrix}
+		\begin{pmatrix}
+			1\\
+			0 \\
+			1 \\
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			c\alpha\\
+			s\alpha \\
+			1 \\
+		\end{pmatrix}
+		\]
+		I per tant $u=q_2-q_1=(c\alpha-1,s\alpha)$. Per a veure el que ens demanen considerarem el vector $s=(\frac{q_1-q_2}{2}-p)=(\frac{1+c\alpha}{2},\frac{s\alpha}{2})$ 
+		i veurem que es perpendicular ja que $\langle s, u\rangle = 0$.
+		\[
+		\langle s, u\rangle = (\frac{1+c\alpha}{2},\frac{s\alpha}{2})\cdot(c\alpha-1,s\alpha)=
+		\frac{c\alpha+1}{2}(c\alpha-1)+\frac{s^2\alpha}{2}=\frac{s^2\alpha+c^2\alpha-1}{2}=0
+		\]
+		$\implies$ El punt $p$ pertany la recta perpendicular a $u$ que passa pel punt $s$.
+		
+	\end{proof}
+	\newpage
+	Per a trobar el centre $p$ del gir usarem l'apartat anterior  que afirma que la recta perpendicular al vector $u=F(q)-1$ i que passa pel punt
+	central entre $F(q)$ i $q$ conte el centre del gir. Primer de tot trobarem aquesta recta per a els dos punts i les seves imatges que ens han donat
+	i en el cas que aquestes siguin linealment independents podrem trobar la seva interseccio. Com que les dos rectes hauràn de contenir el punt
+	$p$ aquesta intersecció serà el centre del gir.
+	
+	Tenim que $\frac{F(1,1)-(-1,3)}{2}$ forma part de la recta i que el seu vector director $s_1$ es $s|\langle s_1, u\rangle=0$ on u es el vector $u=(-1,3)-F(1,1)=(-2-2)$
+	Es veu que aquest vector ha de ser $s_1=(1,1)$. Per tant la recta es $r_1=(0,2)+[(1,1)]$. 
+	
+	Analogament, si fem el mateix amb els altres dos punts obtenim la recta $r_2=(1,2)+[(2,1)]$. I per tant el punt $p$ del centre sera
+	
+	\[
+	p=r_1\cap r_2 = (-1,1)
+	\]
+	Per a trobar el angle de gir buscarem el angle entre els vectors $(2,0)-p$ i $F(2,0)-p=(0,4)-p$, es a dir $(1,3)$ i $(3,-1)$. Tenim que pel que hem vist a teoria que
+	\[
+	cos\alpha=\frac{(1,3)\cdot(3,-1)}{\norm{(1,3)}\norm{(3,-1)}}=0 \implies \alpha=\pm\frac{\pi}{2} 
+	\]
+	Per a trobar el sentit farem el determinant de la matriu dels vectors.
+	\[
+	\begin{vmatrix}
+			3 &	1\\
+			-1  & 3\\
+	\end{vmatrix}
+	=10 > 0 \implies \alpha=\frac{\pi}{2}
+	\]
+	Finalment podem trobar $M(F)$ tenint en conta que sabem que la imatge del centre es el centre podem trobar la matriu buscada.
+	\[
+	\begin{pmatrix}
+		0 &	-1	& a\\
+		1  & 0	& b\\
+		0    & 0	& 1 
+	\end{pmatrix}
+	\begin{pmatrix}
+		-1\\
+		1\\
+		1 \\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		-1\\
+		1\\
+		1 \\
+	\end{pmatrix}
+	\iff
+	a=0, b=2
+	\]
+	I per tant
+	\[
+	M(F)=
+	\begin{pmatrix}
+		0 &	-1	& 0\\
+		1  & 0	& 2\\
+		0    & 0	& 1 
+	\end{pmatrix}
+	\]
+	\newpage
+	\textbf{(ii)} 
+	\begin{proof}
+	
+		 Tenint en conta que es un gir al voltant d'una recta, podem considerar la matriu de \textit{F} en la referencia $R=\{p; u_1, u_2, u_3\}$ on 
+		$p$ es un punt de la recta de punts fixos, $u_1$ es el vector director d'aquesta recta de punts fixoss i $u_2$ i $u_3$ son vectors 
+		arvitraris ortonormals entre ells i a $u_1$, com a
+		\[
+		M(F)= 
+		\begin{pmatrix}
+			1	&	0	&	0	&	0\\
+			0	&	c\alpha &	- s\alpha	& 0\\
+			0	&	s\alpha  & c\alpha	& 0\\
+			0	&	0    & 	0	& 1 
+		\end{pmatrix}
+		\]
+		
+		Per comoditat en els calculs prendrem $u_2=(q_1-p)$ i per tant en aquesta referencia $R$ el punt $q=(0, 1, 0)$ i per tant $q_2$ sera de la forma
+		\[
+		q_2=
+		\begin{pmatrix}
+			1	&	0	&	0	&	0\\
+			0	&	c\alpha &	- s\alpha	& 0\\
+			0	&	s\alpha  & c\alpha	& 0\\
+			0	&	0    & 	0	& 1 
+		\end{pmatrix}
+		\begin{pmatrix}
+			0\\
+			1\\
+			0 \\
+			1 \\
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			0\\
+			c\alpha\\
+			s\alpha \\
+			1 \\
+		\end{pmatrix}
+		\]
+		
+		I per tant $u=q_2-q_1=(0, c\alpha-1,s\alpha)$. Per a veure el que ens demanen considerarem el vector $s_1=(\frac{q_1-q_2}{2}-p)=(0, \frac{1+c\alpha}{2},\frac{s\alpha}{2})$ 
+		i el vector director de la recta de punts fixos $s_2=(1,0,0)$ i veurem que son perpendiculars a $u$ ja que $\langle s_i, u\rangle = 0, i=1,2$.
+		\[
+		\langle s_1, u\rangle =(1,0,0)\cdot(0, c\alpha-1,s\alpha)=0
+		\]
+		\[
+		\langle s_2, u\rangle = (0, \frac{1+c\alpha}{2},\frac{s\alpha}{2})\cdot(0, c\alpha-1,s\alpha)=
+		\frac{c\alpha+1}{2}(c\alpha-1)+\frac{s^2\alpha}{2}=\frac{s^2\alpha+c^2\alpha-1}{2}=0
+		\]
+		
+		I per tant la recta de punts fixos respecte la qual es fa la rotació esta continguda dins del pla perpendicular a $u$ que conté el punt $(p+q)/2$.
+		
+	\end{proof}
+	\newpage
+	
+	Per a trobar en primer lloc la recta de punts fixos aplicarem el mateix procediment que en 2 dimensions en l'apartat (i), es a dir, trobar els plans perpendiculars als respectius vectors
+	$u$ i trobar la seva intersecció, que aquesta per el mateix argument fet anteriorment es la recta de punts fixos buscada.
+	
+	Tenim que els vectors directors del primer pla son 
+	\[
+	\{((1,1,1)-F(1,1,1))\}^\perp=\{(0,0,1)\}^\perp=\{(1,0,0),(0,1,0)\}
+	\]
+	
+	I el punt $\frac{(F(1,1,1)+(1,1,1))}{2}=(1,1,\frac{1}{2})$, per tant el pla buscat es el 
+	\[
+	\Pi_1=(1,1,\frac{1}{2}) + [(1,0,0),(0,1,0)]
+	\]
+	
+	Analogament fent el mateix procediment per al segon pla tenim que
+	\[
+	\{((0,1,0)-F(0,1,0))\}^\perp=\{(1,-1,1)\}^\perp=\{(1,1,0),(0,1,1)\}
+	\]
+	I el punt $\frac{(F(0,1,0)+(0,1,0))}{2}=(\frac{1}{2},\frac{1}{2},\frac{1}{2})$, per tant el segon pla buscat es el 
+	\[
+	\Pi_2=(\frac{1}{2},\frac{1}{2},\frac{1}{2}) + [(1,1,0),(0,1,1)]
+	\]
+	
+	Es pot veure facilment que un punt d'intersecció entre els dos plans es el $(1,1,\frac{1}{2})$ i també que $\{(1,0,0),(0,1,0)\}\cap \{(1,1,0),(0,1,1)\}=\{(1,1,0)\}$, per tant
+	la recta de punts fixos es
+	\[
+	r=(1,1,\frac{1}{2})+[(1,1,0)]
+	\]
+	
+	Ara que tenim la recta de punts fixos podem veure clarament que conte els punts mitjos entre els punts donats i les seves imatges. L'unica rotació en la que aixo passa
+	es aquella amb $\alpha=\pi$, i per tant aquest es el angle de rotació.
+	
+	Finalment per a trobar les equacions considerarem la matriu de la aplicació en la referencia $R=\{(0,0,\frac{1}{2}); (\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} 0), (0,0,1), (\frac{1}{\sqrt{2}} , -\frac{1}{\sqrt{2}} , 0)\}$
+	on el centre es un punt fix de la recta respecte la que es fa el gir, i el primer vector de la base es el vector director d'aquesta recta. Comprovem primer que la base es positiva.
+	\[
+	\begin{vmatrix}
+		\frac{1}{\sqrt{2}} 	&	0	&	\frac{1}{\sqrt{2}}\\
+		\frac{1}{\sqrt{2}} 	&	0	&	-\frac{1}{\sqrt{2}}\\
+		0				&	1  	&	1\\
+	\end{vmatrix}
+	= 1 > 0
+	\]
+	
+	I per tant es una base positiva. En aquesta referencia la matriu te la forma
+	
+	\[
+	M(F)_R=
+	\begin{pmatrix}
+		1	&	0		&	0		&	0\\
+		0	&	cos(\pi)	&	sin(\pi)	&	0\\
+		0	&	sin(\pi) 	&	cos(\pi)	&	0\\
+		0	&	0		& 	0		&	1
+	\end{pmatrix}
+	= 
+	\begin{pmatrix}
+		1	&	0	&	0	&	0\\
+		0	&	-1	&	0	&	0\\
+		0	&	0  	&	-1	&	0\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\]
+	
+	Finalment tenim que 
+	
+	\[
+	M(F)=S\cdot M(F)_R\cdot S^{-1}=
+	\]
+	\[
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} 	&	0	&	\frac{1}{\sqrt{2}} 	&	0\\
+		\frac{1}{\sqrt{2}} 	&	0	&	-\frac{1}{\sqrt{2}}	&	0\\
+		0				&	1  	&	0				&	\frac{1}{2}\\
+		0				&	0	& 	0				&	1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1	&	0	&	0	&	0\\
+		0	&	-1	&	0	&	0\\
+		0	&	0  	&	-1	&	0\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} 	&	0	&	\frac{1}{\sqrt{2}} 	&	0\\
+		\frac{1}{\sqrt{2}} 	&	0	&	-\frac{1}{\sqrt{2}}	&	0\\
+		0				&	1  	&	0				&	\frac{1}{2}\\
+		0				&	0	& 	0				&	1
+	\end{pmatrix}^{-1}
+	\]
+	
+	Per a trobar tal inversa usarem la formula que ens diu que la part lineal de la matriu $S^{-1}$ es la inversa de la part lineal de $S$
+	if que la part no lineal es $S^{-1}$ multiplicat per la part no lineal de $S$.
+	\[
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} 	&	0	&	\frac{1}{\sqrt{2}}  & 1 & 0 & 0\\
+		\frac{1}{\sqrt{2}} 	&	0	&	-\frac{1}{\sqrt{2}} & 0 & 1 & 0\\
+		0				&	1  	&	0			  & 0 & 0 & 1\\
+	\end{pmatrix}
+	\sim
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} 	&	0	&	\frac{1}{\sqrt{2}}  & 1 & 0 & 0\\
+		0			 	&	1	&	0		 	  & 0 & 0 & 1\\
+		0				&	0  	&	-\sqrt{2}		  & -1 & 1& 0\\
+	\end{pmatrix}
+	\sim
+	\begin{pmatrix}
+		1 	&	0	&	0 	& \frac{1}{\sqrt{2}}	 & \frac{1}{\sqrt{2}}	 & 0\\
+		0	&	1	&	0	& 0 				& 0 				& 1\\
+		0	&	0  	&	1	& \frac{1}{\sqrt{2}}	& -\frac{1}{\sqrt{2}}	& 0\\
+	\end{pmatrix}
+	\]
+	
+	I per tant la inversa buscada es
+	\[
+	S^{-1}=
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}}	 & \frac{1}{\sqrt{2}}	 & 0\\
+		0 				& 0 				& 1\\
+		\frac{1}{\sqrt{2}}	& -\frac{1}{\sqrt{2}}	& 0\\
+	\end{pmatrix}
+	\]
+	
+	La part no lineal la trobem fent la operacio mencionada abans
+	
+	\[
+	-
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}}	 & \frac{1}{\sqrt{2}}	 & 0\\
+		0 				& 0 				& 1\\
+		\frac{1}{\sqrt{2}}	& -\frac{1}{\sqrt{2}}	& 0\\
+	\end{pmatrix}
+	\begin{pmatrix}
+		0\\
+		0\\
+		\frac{1}{2}\\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0\\
+		-\frac{1}{2}\\
+		0\\
+	\end{pmatrix}
+	\]
+	
+	\newpage
+	Finalment calculem $M(F)$
+	\[
+	M(F)=
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}} 	&	0	&	\frac{1}{\sqrt{2}} 	&	0\\
+		\frac{1}{\sqrt{2}} 	&	0	&	-\frac{1}{\sqrt{2}}	&	0\\
+		0				&	1  	&	0				&	\frac{1}{2}\\
+		0				&	0	& 	0				&	1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1	&	0	&	0	&	0\\
+		0	&	-1	&	0	&	0\\
+		0	&	0  	&	-1	&	0\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{1}{\sqrt{2}}	 & \frac{1}{\sqrt{2}}	& 0	&0\\
+		0 			& 0 				& 1	&-\frac{1}{2}\\
+		\frac{1}{\sqrt{2}}	& -\frac{1}{\sqrt{2}}	& 0	&0\\
+		0			&0				&0	&0
+	\end{pmatrix}
+	\]
+	\[
+	M(F)=
+	\begin{pmatrix}
+		0	&	1	&	0	&	0\\
+		1	&	0	&	0	&	0\\
+		0	&	0  	&	-1	&	1\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\]
+	
+	
+	
+	
+	
+	\newpage
+	\section{Problema 2}
+	\textbf{(i)} 
+	En primer lloc trobarem $M(f)$ per tal de composarla amb $h$. Les equacions les podem obtenir imposant les condicions $\overrightarrow{qf(q)} \perp \pi$ on $\pi$ es
+	el pla respecte el que es fa la simetria especular $\pi=p + [w]^\perp$, $q$ un punt arbitrari. Ho farem usant la seguent formula
+	\[
+	f(q)=q-2*\frac{\langle pq, w \rangle}{\langle w, w, \rangle} w
+	\]
+	Tenim que $\pi: (0,0,0)+[(1,-1,0)]^\perp$
+	\begin{center}
+	\[
+	f(x,y,z)=(x,y,z)-2\frac{\langle (x,y,z), (1,-1,0) \rangle}{1^2+(-1)^2+0^2}(1,-1,0)=
+	\]
+	\[
+	(x,y,z)-(x-y,y-x,0)=(y,x,z)
+	\]
+	\end{center}
+	I per tant la matriu M(f) serà de la forma
+	\[
+	M(f)=
+	\begin{pmatrix}
+		0	&	1	&	0	&	0\\
+		1	&	0	&	0	&	0\\
+		0	&	0  	&	1	&	0\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\]
+	Aleshores la composició de $h\circ f$ tindra la forma
+	\[
+	M(F)=M(h\circ f)=
+	\begin{pmatrix}
+		\frac{1}{3}		&	-\frac{2}{3}	&	-\frac{2}{3}	&	2\\
+		-\frac{2}{3}	&	-\frac{2}{3}	&	\frac{1}{3}		&	2\\
+		-\frac{2}{3}	&	\frac{1}{3}  	&	-\frac{2}{3}	&	2\\
+		0			&	0			& 	0			&	1 
+	\end{pmatrix}
+	\begin{pmatrix}
+		0	&	1	&	0	&	0\\
+		1	&	0	&	0	&	0\\
+		0	&	0  	&	1	&	0\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		-\frac{2}{3}	&	\frac{1}{3}		&	-\frac{2}{3}	&	2\\
+		-\frac{2}{3}	&	-\frac{2}{3}	&	\frac{1}{3}		&	2\\
+		\frac{1}{3}		&	-\frac{2}{3}  	&	-\frac{2}{3}	&	2\\
+		0			&	0			& 	0			&	1 
+	\end{pmatrix}
+	\]
+	Com que $|M(F)|=-1$ podem dir que $F$ es inversa. Mirem si te punts fixos.
+	\[
+	\begin{pmatrix}
+		-\frac{5}{3}	&	\frac{1}{3}		&	-\frac{2}{3}\\
+		-\frac{2}{3}	&	-\frac{5}{3}	&	\frac{1}{3}	\\
+		\frac{1}{3}		&	-\frac{2}{3}  	&	-\frac{5}{3}\\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		z\\
+		y\\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		-2\\
+		-2\\
+		-2\\
+	\end{pmatrix}
+	\iff
+	(x,y,z)=(1,1,1)
+	\]
+	Per tant podem assegurar que $F$ es una composicio de una simetria especular amb una rotació al voltant de una recta que conté $(1,1,1)$
+	El angle de rotacio $\alpha$ el podem trobar usant la formula que diu que $2cos\alpha=Tr(F)+1=-1\iff \alpha=\pm\frac{2\pi}{3}$.
+	Per a trobar si esta entre $(0,\pi)$ o entre $(\pi,2\pi)$ calcularem el determinant de la matriu formada per el vector director del eix, el vector $(3,0,0)$
+	que no forma part del eix l a seva imatge $F(3,0,0)=(-2,-2,1)$.
+	
+	\[
+	\begin{vmatrix}
+		1	&	3	&	-2\\
+		1	&	0	&	-2\\
+		1	&	0  	&	1
+	\end{vmatrix}
+	=
+	-9<0
+	\]
+	
+	I per tant l'angle de rotacio es $\alpha=\frac{4\pi}{3}$.
+	
+	Finalment trobarem el plà a partir de trobar el vep de vap 1 i considerar el seu ortogonal.
+	\[
+	Nuc(M(F)-(-1)Id))=Nuc
+	\begin{pmatrix}
+		\frac{1}{3}		&	\frac{1}{3}		&	-\frac{2}{3}\\
+		-\frac{2}{3}	&	\frac{1}{3}		&	\frac{1}{3}	\\
+		\frac{1}{3}		&	-\frac{2}{3}  	&	\frac{1}{3}	\\
+	\end{pmatrix}
+	=
+	Nuc
+	\begin{pmatrix}
+		1	&	0	&	-1\\
+		0	&	1	&	-1\\
+		0	&	0  	&	0
+	\end{pmatrix}
+	=[(1,1,1)]
+	\]
+	I per tant el pla respecte el que es fa la simetria especular es 
+	\[
+	\Pi=(1,1,1)+[(1,-1,0),(0,1,-1)]
+	\]
+	I tenint en conta que el vector director de la recta respecte la que es fa la rotació es el perpendicular al pla de la simetria especular 
+	ens queda que tal recta es
+	\[
+	r=(1,1,1) + [(1,1,1)]
+	\]
+	\\
+	
+
+	\textbf{(ii)} 
+	Primer de tot 
+	\begin{center}
+	\[
+	g(x,y,z)=(x,y,z)-2\frac{\langle (x,y,z), (1,1,1) \rangle}{1^2+1^2+1^2}(1,1,1)=
+	\]
+	\[
+	(x,y,z)-\frac{2}{3}(x+y+z,x+y+z,z+y+z)=(\frac{1}{3}x-\frac{2}{3}y-\frac{2}{3}z,\frac{2}{3}x-\frac{1}{3}y-\frac{2}{3}z,\frac{2}{3}x-\frac{2}{3}y-\frac{1}{3}z)
+	\]
+	\end{center}
+	I per tant la matriu M(g) serà de la forma
+	\[
+	M(g)=
+	\begin{pmatrix}
+		\frac{1}{3}		&	-\frac{2}{3}	&	-\frac{2}{3}	&	0\\
+		-\frac{2}{3}	&	\frac{1}{3}		&	-\frac{2}{3}	&	0\\
+		-\frac{2}{3}	&	-\frac{2}{3}  	&	\frac{1}{3}		&	0\\
+		0			&	0			& 	0			&	1 
+	\end{pmatrix}
+	\]
+	I per tant la matriu M(G) sera de la forma
+	\[
+	M(G)=M(g\circ F)=
+	\begin{pmatrix}
+		\frac{1}{3}		&	-\frac{2}{3}	&	-\frac{2}{3}	&	0\\
+		-\frac{2}{3}	&	\frac{1}{3}		&	-\frac{2}{3}	&	0\\
+		-\frac{2}{3}	&	-\frac{2}{3}  	&	\frac{1}{3}		&	0\\
+		0			&	0			& 	0			&	1 
+	\end{pmatrix}
+	\begin{pmatrix}
+		-\frac{2}{3}	&	\frac{1}{3}		&	-\frac{2}{3}	&	2\\
+		-\frac{2}{3}	&	-\frac{2}{3}	&	\frac{1}{3}		&	2\\
+		\frac{1}{3}		&	-\frac{2}{3}  	&	-\frac{2}{3}	&	2\\
+		0			&	0			& 	0			&	1 
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0	&	1	&	0	&	-2\\
+		0	&	0	&	1	&	-2\\
+		1	&	0  	&	0	&	-2\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\]
+	Com que $det(M(G))=1$ G es un moviment directe i per tant es un moviment helicoidal. Calculant el vep de vap 1 tindrem la direccio de la translacio.
+	\[
+	Nuc(M(G)-1)Id))=Nuc
+	\begin{pmatrix}
+		-1	&	1	&	0\\
+		0	&	-1	&	1\\
+		1	&	0  	&	-1
+	\end{pmatrix}
+	=
+	Nuc
+	\begin{pmatrix}
+		1	&	0	&	-1\\
+		0	&	1	&	-1\\
+		0	&	0  	&	0
+	\end{pmatrix}
+	=
+	[(1,1,1)]
+	\]
+	Per a trobar la recta respecta la que fa el gir elicoidal nomes ens caldra trobar un punt de la recta, es a dir un punt $p=(x,y,z)$ tal que 
+	\[
+	\begin{pmatrix}
+		0	&	1	&	0	&	-2\\
+		0	&	0	&	1	&	-2\\
+		1	&	0  	&	0	&	-2\\
+		0	&	0	& 	0	&	1
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		z\\
+		y\\
+		1\\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		y-2\\
+		z-2\\
+		x-2\\
+		1\\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		x\\
+		z\\
+		y\\
+		1\\
+	\end{pmatrix}
+	+\lambda
+	\begin{pmatrix}
+		1\\
+		1\\
+		1\\
+		0\\
+	\end{pmatrix}
+	\]
+	Es pot veure que si considerem el punt $p=(0,0,0)$ i $\lambda=-2$ es compleix la igualtat i per tant 
+	\[
+	r=(0,0,0)+[(1,1,1)]
+	\]
+	Observem que si calculem $G(G(G(x,y,z)))=(x-6,y-6,z-6)=(x,y,z) - 6*(1,1,1)$ Com que el vector $(1,1,1)$ es el vector director de la recta respecte la que es fa
+	el gir podem asegurar que s'ha d'aplicar 3 cops la funcio per a que faci una rotacio de $2\pi$, es a dir una volta a l'eix, per tant a cada volta gira un angle de 
+	$\alpha=\frac{2\pi}{3}$
+	\\
+	
+	\textbf{(iii)} 
+	Com que s'aplica la rotació 15 podem considerar que el punt girara $15\alpha=10\pi$ 
+	vegades respecte l'eix de rotació. Com que sempre es quedara dins del mateix pla i gira $5(2\pi)$ radians que es el mateix que 5 voltes, podem confirmar que tal punt no
+	es mourà per efecte de la rotació. Com que s'aplica un nombre parell de vegades la simetria especular si que variarà el punt en questió deixant-lo en el seu simetric respecte el pla
+	$\Pi$ i per tant $F^15(0,0,0)=(2,2,2)$.
+	
+	Com hem vist en l'apartat \textbf{(ii)} cada cop que s'aplica 3 cops la funcio la imatge fa una volta completa a l'eix de rotació i es desplaça en la direccio $-6(1,1,1)$
+	per tant si s'aplica 6 cops la composicio de 3 funcions $G$ ens queda que $G^18(x,y,z)=(x,y,z)+6(-6(1,1,1))=(x-36, y-36, z-36)$ que en el cas del punt que ens donen
+	dona $G^18(0,0,1)=(-36,-36,-35)$.
+
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+

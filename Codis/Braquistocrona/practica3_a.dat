@@ -1,0 +1,10 @@
+#dades problema braquistocrona part a
+
+param n := 100;
+param a := 1;
+param b := 1;
+param XS;
+param eps := 0.001;
+
+let {i in 0..n} XS[i] := a*((i/n)**2);
+

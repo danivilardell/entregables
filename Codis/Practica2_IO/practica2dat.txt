@@ -1,0 +1,5 @@
+#Problema dels equips
+
+param n:=20;
+param r := 20;
+param s :=20;

@@ -1,0 +1,93 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyvrb}
+\usepackage{circuitikz}
+\usepackage{indentfirst}
+\usepackage{verbatimbox}
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\graphicspath{ {./images/} }
+
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{}
+\title{Implementacio de l’algorisme del simplex primal}
+\date{}
+
+\begin{document}
+	\maketitle
+	\begin{center}
+		\begin{tabular}{ |c | c  c |}
+			\hline
+			\textbf{Nom} 		& \textbf{DNI}		& \textbf{Conjunt de dades} \\ \hline
+			Ruben Aciego 		&--- 		 		& 1  			\\ 
+			Daniel Vilardell 		&48109585W 		& 65\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\tableofcontents
+	
+	\newpage
+	
+	\section{Breu explicació del funcionament del codi}
+	
+	La implementació que hem fet del simplex consta de dos fases, la fase I on trobem una SBF del PL donata partir d'afegir la matriu identitat a A i agafar com a VB inicials els corresponents al les columnes de la matriu afegida. Tot i que tenim les dos fases, fem tots els calculs dins de la mateixa funcio, anomenada iteració, a on li passem com a parametre un bool que marca si estem a la fase I o a la fase II.
+	
+	Per tal de detectar la infactibilitat, despres d'aplicar la fase I mirarem si el valor de la funció objectiu de la fase inicial es major que 0, ja que en aquest cas s'hauria trobat una SBF optima del problema de fase I que depen de VB afegides que no pertanyen al PL original. En el cas de que detecti la infactibilitat, el problema retornara -1.
+	
+	Per tal de detectar si el PL es il·limitat, a cada iteració de la fase II mirarem si totes les direccions basiques son majors o iguals a 0, i en el cas que es doni tal event, retornarem -1 de la funció de iteració i retornarem -2 de la funcio simplex. Les dades que es mostraran despres de informar que el problema es ilimitat seran la informació del ultim vertex que te una aressta amb direcció de descens negativa i $\theta^*$ infinita.
+	
+	\newpage
+	\section{Solució dels problemes de Ruben Aciego}
+	
+	\subsection{PL1}
+	
+	\subsection{PL2}
+	
+	\subsection{PL3}
+	
+	\subsection{PL4}
+	
+	\newpage
+	\section{Solució dels problemes de Daniel Vilardell}
+	
+	\subsection{PL1}
+
+	{\scriptsize \VerbatimInput{./solucio/SolucioPL1_D.txt}}
+	
+	\subsection{PL2}
+
+	{\scriptsize \VerbatimInput{./solucio/SolucioPL2_D.txt}}
+	
+	\subsection{PL3}
+	
+	{\scriptsize \VerbatimInput{./solucio/SolucioPL3_D.txt}}
+	\newpage
+	\subsection{PL4}
+	
+	{\scriptsize \VerbatimInput{./solucio/SolucioPL4_D.txt}}
+
+	
+\end{document}

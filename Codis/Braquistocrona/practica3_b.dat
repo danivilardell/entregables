@@ -1,0 +1,10 @@
+#dades problema braquistocrona part b
+
+param n := 100;
+param a := 1;
+param b := 1;
+param YS;
+param eps := 0.0000000000001;
+
+let {i in 0..n} YS[i] := b*i*1/n;
+

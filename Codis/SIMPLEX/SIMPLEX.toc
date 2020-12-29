@@ -1,0 +1,12 @@
+\babel@toc {catalan}{}
+\contentsline {section}{\numberline {1}Breu explicació del funcionament del codi}{2}{section.1}%
+\contentsline {section}{\numberline {2}Solució dels problemes de Ruben Aciego}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}PL1}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}PL2}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}PL3}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}PL4}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Solució dels problemes de Daniel Vilardell}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}PL1}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}PL2}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}PL3}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}PL4}{8}{subsection.3.4}%

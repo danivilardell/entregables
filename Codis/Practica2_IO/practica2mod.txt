@@ -1,0 +1,36 @@
+#Problema dels equips
+
+#Parametres
+param n >= 0;
+param r >= 0;
+param s >= 0;
+set EQUIPS := 1..n;
+set EQUIPS_INTRA := 1..n/2;
+set EQUIPS_INTER := (n/2 + 1)..n;
+set JORNADES := 1..(r*(n/2 - 1)+s*n/2);
+set JORNADES_FUNCIO_OBJ := 2..(r*(n/2 - 1)+s*n/2);
+
+var X{i in EQUIPS, j in EQUIPS, k in JORNADES} binary;
+
+
+
+#Funcio objectiu
+maximize c: 
+sum{i in EQUIPS_INTRA, j in EQUIPS_INTRA, k in JORNADES_FUNCIO_OBJ} X[i,j,k]*2**(k - 2);
+
+#Restriccions
+subject to partit_per_jornada{k in JORNADES, i in EQUIPS}:
+(sum{j in EQUIPS} X[i, j, k]) = 1;
+
+subject to simetria_partits{i in EQUIPS, j in EQUIPS, k in JORNADES}:
+X[i, j, k] = X[j, i, k];
+
+subject to partits_intra1{i in EQUIPS_INTRA, j in EQUIPS_INTRA : j != i}:
+(sum{k in JORNADES} X[i, j, k]) = r;
+
+subject to partits_intra2{i in EQUIPS_INTER, j in EQUIPS_INTER : j != i}:
+(sum{k in JORNADES} X[i, j, k]) = r;
+
+subject to partits_inter{i in EQUIPS_INTRA, j in EQUIPS_INTER: i != j}:
+(sum{k in JORNADES} X[i, j, k]) = s;
+

@@ -1,0 +1,17 @@
+\babel@toc {catalan}{}
+\contentsline {section}{\numberline {1}Formulació matematica del problema}{2}{section.1}%
+\contentsline {section}{\numberline {2}Codis i gràfiques}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Fitxer .run gloval}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Fitxers .mod}{3}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Part a}{3}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Part b}{3}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Part c}{3}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Fitxers .dat}{4}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Part a}{4}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Part b}{4}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Part c}{4}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Grafiques}{5}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Part a}{5}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Part b}{6}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Part c}{7}{subsubsection.2.4.3}%
+\contentsline {section}{\numberline {3}Demostració de que el model B es un problema convex}{8}{section.3}%

@@ -1,0 +1,316 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{array}
+\usepackage{indentfirst}
+\usepackage{circuitikz}
+\usepackage{float}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Proposta exercici d'examen DGD}
+\date{17-10-2020}
+
+\begin{document}
+	\maketitle
+	\begin{center}
+	\footnotesize{
+		\textcolor{red}{La solució del exercici és extensa i detallada, no s'espera que l'alumnat aprofundeixi tant en les respostes}
+		}
+	\end{center}
+	\newpage
+	\section{} 
+	\textbf{a)} A partir de una taula de Karnaugh i comprovant tots els casos troba la funció que et permetria dissenyar un circuit que et deixi veure si un nombre de 4 bits és divisible per 6. Quants components i quins de dos entrades es necessitarien per a una implementació? 
+	
+	Per a fer això primer trobeu la taula de Karnaugh i feu una cerca exhaustiva que miri si un nombre és divisible per 3. Trobeu també la del 2 i multipliqueu els resultats ja que si és divisible per 2 i per 3, és divisible per 6.
+	\\\\
+	
+	\textbf{b)} És ben conegut que tot nombre binari és divisible per 2 si i només si el seu últim dígit és 0. Un criteri més interessant encara, i potser una mica menys trivial és el criteri de divisibilitat del 3 per nombres binaris. Aquest anuncia el següent:
+	\begin{itemize}
+	\item Si la suma dels bits parells menys la suma dels bits senars és divisible per 3, aleshores el nombre original és divisible per 3. 
+	\end{itemize}
+	
+	Tenint en compte que en un nombre de quatre bits com a molt els bits en posicions parells i senars sumen 2, proposi un disseny d'un circuit que permeti distingir els nombres de 5 bits que són divisibles per 6 dels que no usant el criteri donat.
+	\\\\
+	
+	\textbf{c)} Finalment, amb l'ajuda de multiplexors i un component que anomenarem DIV\_6(creat a l'exercici anterior que per cada nombre de 5 bits que li dones treu 1 si és múltiple de 6 i 0 si no ho és) dissenyeu un circuit lògic que faci el següent: Donats dos nombres de 5 bits $a$ i $b$
+	\begin{itemize}
+	\item Si cap dels dos és divisible per 6 retorni 0
+	\item Si un d'ells és divisible per 6 retorni aquell nombre
+	\item Si els dos ho són, retorni $a$ 
+	\end{itemize}
+	
+	\newpage	
+	\textbf{Resolució a:} Considerem la taula de Karnaugh dels nombres divisibles per 3 de 4 bits on les files $x_0$ i $x_1$ i les columnes marquen les $x_2$ i $x_3$:
+	\begin{center}
+	\begin{tabular}{c|| c c c c} 
+	  & 00 & $01$ &$11$ & 10\\ [0.5ex] 
+	 \hline\hline
+	 00 & 1 & 0 & 1 & 0\\ 
+
+	 01 & 0 & 0  & 0 & 1\\
+
+	 11 & 1 & 0 & 1 & 0\\
+
+	 10 & 0 & 1 & 0 & 0\\
+	\end{tabular}
+	\end{center}
+	
+	Vist això només podem trobar una única simplificació que es basa en fer 6 grups de minterms, i per tant:
+	\[
+	F_3 = \bar{x_0}\bar{x_1}\bar{x_2}\bar{x_3} + \bar{x_0}\bar{x_1}x_2x_3 + \bar{x_0}x_1x_2\bar{x_3} + x_0x_1\bar{x_2}\bar{x_3} + x_0x_1x_2x_3 + x_0\bar{x_1}x_2\bar{x_3}
+	\]
+	
+	Ara fem el mateix per 2
+	\begin{center}
+	\begin{tabular}{c|| c c c c} 
+	  & 00 & $01$ &$11$ & 10\\ [0.5ex] 
+	 \hline\hline
+	 00 & 1 & 0 & 0 & 1\\ 
+
+	 01 & 1 & 0  & 0 & 1\\
+
+	 11 & 1 & 0 & 0 & 1\\
+
+	 10 & 1 & 0 & 0 & 1\\
+	\end{tabular}
+	\end{center}
+	
+	Aquí sí que podem fer un grup de 8 uns i per tant és trivial que $F_2 = \overline{x_3}$. Ara, per tant, multipliquem $F_2\cdot F_3$
+	\[
+	\bar{x_3}(\bar{x_0}\bar{x_1}\bar{x_2}\bar{x_3} + \bar{x_0}\bar{x_1}x_2x_3 + \bar{x_0}x_1x_2\bar{x_3} + x_0x_1\bar{x_2}\bar{x_3} + x_0x_1x_2x_3 + x_0\bar{x_1}x_2\bar{x_3})=
+	\]
+	\[
+	=\bar{x_3}(\bar{x_0}\bar{x_1}\bar{x_2} + \bar{x_0}x_1x_2+ x_0x_1\bar{x_2}+ x_0\bar{x_1}x_2)
+	\]
+	
+	Vista la funció, per a implementar tal circuit es necessitarien 2 portes $and$ per cada multiplicació de tres digits, 3 portes $or$ per a la suma dels quatre sumands i finalment una porta $and$ més per a fer el producte amb $\bar{x_3}$. Per tant en total es necessitarien 10 components lògics per a fer el circuit buscat.\\\\
+	
+	\newpage
+	\textbf{Resolució b:} Notem primer, que un nombre sigui divisible per 6 implica que ho és tant per 2 com per 3. Dit això anem a veure com comprovar aquestes dues afirmacions.
+	
+	Veiem que si el nombre és de 4 bits, l'únic que hem de comprovar és que la suma de bits parells sigui igual a la dels senars, ja que si $x - y$ és divisible per 3 amb $x < 3 $ i $y < 3$ mai pot donar un nombre diferent de 0. Això ens porta a pensar que hem de trobar una manera de passar de mirar aquests 5 bits a mirar quatre bits per a comprovar la divisibilitat, així poder demostrar simplement la igualtat prèviament mencionada. 
+	
+	Si en primer lloc mirem la divisibilitat per 2, en el cas que no sigui parell ja ho tindriem, podem confirmar que el nombre no és divisible per 6. En el cas que sí ho sigui, podem dividir el nombre original per 2, és a dir, eliminar l'últim dígit, i així passariem a comprovar la divisibilitat per 3 en un nombre de només 4 xifres.
+	
+	Vist amb portes lògiques, si tenim la divisibilitat del 3 i la del 2, amb una porta and en tindríem prou per saber la divisibilitat del 6. 
+	
+	Ara per tal de veure si les 4 primeres xifes són divisibles per 3, mirarem si $x_1+x_3 = x_2+x_4$. Necessitem, per tant, dos sumadors de dos bits i després tres portes $and$ per a comprovar el resultat. Suposem que $x+y=F_1F_2$ on cada F és un bit del resultat. Constrüim la taula de veritat de cada funció per a veure que necessitarem per a fer el sumador.
+	
+	\begin{center}
+	\begin{tabular}{||c c| c c||} 
+	 \hline
+	 x & y & $F_1$ &$F_2$\\ [0.5ex] 
+	 \hline\hline
+	 0 & 0 & 0 & 0\\ 
+	 \hline
+	 0 & 1 & 0  & 1\\
+	 \hline
+	 1 & 0 & 0 & 1\\
+	 \hline
+	 1 & 1 & 1 & 0\\
+	 \hline
+	\end{tabular}
+	\end{center}	
+	I per tant el circuit logit tindrà la següent forma
+	
+	\begin{center}
+	\begin{circuitikz} \draw
+		(2,1) node[and port] (myxor2) {}
+		(myxor2.in 1) node[left] {$x$}
+		(myxor2.in 2) node[left] {$y$}
+		(myxor2.out) node[right] {$F_2$}
+		(2,3) node[xor port] (myxor5) {}
+		(myxor5.in 1) node[left] {$x$}
+		(myxor5.in 2) node[left] {$y$}
+		(myxor5.out) node[right] {$F_1$};
+	\end{circuitikz}
+	\end{center}
+	
+	Finalment per a comprovar si els dos nombres són els mateixos usarem comparadors $and$ com hem comentat anteriorment. Per tant el circuit que verificarà la divisivilitat per 3 tindrà la següent forma
+	
+	\begin{figure}[H]
+	\begin{center}
+	\scalebox{0.84}{
+	\begin{circuitikz} \draw
+		(0,6) node[xor port] (myxor1) {}
+		(myxor1.in 1) node[left] {$x_1$}
+		(myxor1.in 2) node[left] {$x_3$}
+		
+		(0,4) node[xor port] (myxor2) {}
+		(myxor2.in 1) node[left] {$x_2$}
+		(myxor2.in 2) node[left] {$x_4$}
+	
+		(0,2) node[and port] (and1) {}
+		(and1.in 1) node[left] {$x_1$}
+		(and1.in 2) node[left] {$x_3$}
+		
+		(0,0) node[and port] (and2) {}
+		(and2.in 1) node[left] {$x_2$}
+		(and2.in 2) node[left] {$x_4$}
+		
+		(2,1) node[and port] (and3) {}
+		(2,5) node[and port] (and4) {}
+		(myxor1.out) -- (and4.in 1)
+		(myxor2.out) -- (and4.in 2)
+		(and1.out) -- (and3.in 1)
+		(and2.out) -- (and3.in 2)
+		
+		(4,3) node[and port] (and5) {}
+		(and4.out) -- (and5.in 1)
+		(and3.out) -- (and5.in 2)
+		(and5.out) node[right] {$out$};
+	\end{circuitikz}
+	}
+	\end{center}
+	\end{figure}
+	
+	Ara només cal verificar la divisibilitat del 2, és a dir, que el bit en la posició $x_0$ sigui igual a 0, això és fàcil de fer i només ens caldrà usar un $not$ i un $and$ per a tenir el disseny complet. El circuit lògic final és el següent:
+	
+	
+	\begin{figure}[H]
+	\begin{center}
+	\scalebox{0.84}{
+	\begin{circuitikz} \draw
+		(0,6) node[xor port] (myxor1) {}
+		(myxor1.in 1) node[left] {$x_1$}
+		(myxor1.in 2) node[left] {$x_3$}
+		
+		(0,4) node[xor port] (myxor2) {}
+		(myxor2.in 1) node[left] {$x_2$}
+		(myxor2.in 2) node[left] {$x_4$}
+	
+		(0,2) node[and port] (and1) {}
+		(and1.in 1) node[left] {$x_1$}
+		(and1.in 2) node[left] {$x_3$}
+		
+		(0,0) node[and port] (and2) {}
+		(and2.in 1) node[left] {$x_2$}
+		(and2.in 2) node[left] {$x_4$}
+		
+		(2,1) node[and port] (and3) {}
+		(2,5) node[and port] (and4) {}
+		(myxor1.out) -- (and4.in 1)
+		(myxor2.out) -- (and4.in 2)
+		(and1.out) -- (and3.in 1)
+		(and2.out) -- (and3.in 2)
+		
+		(4,3) node[and port] (and5) {}
+		(and4.out) -- (and5.in 1)
+		(and3.out) -- (and5.in 2)
+		
+		(3, 8) node[not port] (not1) {}
+		(not1.in) node[left] {$x_0$}
+		
+		(6,4) node[and port] (and6) {}
+		(and5.out) -- (and6.in 2)
+		(not1.out) -- (and6.in 1)
+		(and6.out) node[right] {$out$};
+	\end{circuitikz}
+	}
+	\end{center}
+	\end{figure}
+	
+	
+	\textbf{Resolució c:} Per tal de solucionar aquest apartat usarem 5 multiplexors, un per a cada dígit, de 4 entrades de dades, i per tant dos entrades de control i una sortida $Z$. Les entrades de control estaran dotades amb la informació de si $A$ és divisible per 6, i la segona de sí $B$ és divisible per 6. Vist això considerem la taula de veritat i mirem quines hauran de ser les entrades de dades.
+	\begin{center}
+	\begin{tabular}{||c c| c||} 
+	 \hline
+	 $div_6(A)$ & $div_6(B)$ & $Z$\\ [0.5ex] 
+	 \hline\hline
+	 0 & 0 & 0\\ 
+	 \hline
+	 0 & 1 & $A_i$\\
+	 \hline
+	 1 & 0 & $B_i$\\
+	 \hline
+	 1 & 1 & $A_i$\\
+	 \hline
+	\end{tabular}
+	\end{center}
+	
+	Vist això haurem de posar la primera entrada a terra, la segona i la quarta a $A_i$ i finalment la tercera a $B_i$. 
+	
+	\begin{figure}[H]
+	\begin{center}
+	\scalebox{0.7}{
+	\begin{tikzpicture}
+	
+		\draw (-6,-5)coordinate (O)--++(1.5, 0)coordinate (A)--++(0, 0.5)coordinate (B1)--++(0, 0.5)coordinate (B2)--++(-1.5, 0)coordinate (C)--++(0, -0.5)coordinate (C2)--cycle
+		(C2) node[right]  {$ DIV_6$}
+		(C2) -- ++(-0.5, 0) node[](EntrA){}
+		(EntrA) node[left] {$A[4..0]$}
+		(B1) -- ++(1.21, 0) node[](EntrA){};
+		
+		\draw (-6,-8)coordinate (O)--++(1.5, 0)coordinate (A)--++(0, 0.5)coordinate (B1)--++(0, 0.5)coordinate (B2)--++(-1.5, 0)coordinate (C)--++(0, -0.5)coordinate (C2)--cycle
+		(C2) node[right]  {$ DIV_6$}
+		(C2) -- ++(-0.5, 0) node[](EntrA){}
+		(EntrA) node[left] {$B[4..0]$}
+		(B1) -- ++(2.15, 0) node[](EntrA){};
+		
+		\draw (0,0)coordinate (O)--++(30:1)coordinate (A)--++(90:0.8)coordinate (B)--++(150:1)coordinate (C)--cycle;
+		\draw ($(A)!0.5!(B)$)--++(0:1)node[right]{$z_0$};
+		\draw ($(O)!0.25!(A)$)--++(-90:0.5)--++(180:3.5)node(IN1){};
+		\draw (IN1) node[left]  {};
+		\draw ($(O)!0.75!(A)$)--++(-90:1.23)--++(180:3)node(IN2){};
+		\draw (IN2) node[left]  {};
+		\draw ($(C)! 0.1*2.2 !(O)$)--++(180:1) node[ground, yscale = -1] (GND){};
+		\foreach \y/\t in {0.2/a_0,0.3/b_0,0.4/a_0} {
+		\draw ($(C)! \y*2.2 !(O)$)--++(180:1) node[left] {$\t$};}
+		\draw (IN1) -- ++(0, -12);
+		\draw (IN2) -- ++(0, -12);
+		
+		
+		\draw (0,-3)coordinate (O)--++(30:1)coordinate (A)--++(90:0.8)coordinate (B)--++(150:1)coordinate (C)--cycle;
+		\draw ($(A)!0.5!(B)$)--++(0:1)node[right]{$z_1$};
+		\draw ($(O)!0.25!(A)$)--++(-90:0.5)--++(180:3.5)node(IN1){};
+		\draw (IN1) node[left]  {};
+		\draw ($(O)!0.75!(A)$)--++(-90:1.23)--++(180:3)node(IN2){};
+		\draw (IN2) node[left]  {};
+		\draw ($(C)! 0.1*2.2 !(O)$)--++(180:1) node[ground, yscale = -1] (GND){};
+		\foreach \y/\t in {0.2/a_1,0.3/b_1,0.4/a_1} {
+		\draw ($(C)! \y*2.2 !(O)$)--++(180:1) node[left] {$\t$};}
+		\draw (IN1) -- ++(0, 3);
+		\draw (IN2) -- ++(0, 3);
+		
+		\draw (0,-6)coordinate (O)--++(30:1)coordinate (A)--++(90:0.8)coordinate (B)--++(150:1)coordinate (C)--cycle;
+		\draw ($(A)!0.5!(B)$)--++(0:1)node[right]{$z_2$};
+		\draw ($(O)!0.25!(A)$)--++(-90:0.5)--++(180:3.5)node[left]{};
+		\draw ($(O)!0.75!(A)$)--++(-90:1.23)--++(180:3)node[left]{};
+		\draw ($(C)! 0.1*2.2 !(O)$)--++(180:1) node[ground, yscale = -1] (GND){};
+		\foreach \y/\t in {0.2/a_2,0.3/b_2,0.4/a_2} {
+		\draw ($(C)! \y*2.2 !(O)$)--++(180:1) node[left] {$\t$};}
+		
+		\draw (0,-9)coordinate (O)--++(30:1)coordinate (A)--++(90:0.8)coordinate (B)--++(150:1)coordinate (C)--cycle;
+		\draw ($(A)!0.5!(B)$)--++(0:1)node[right]{$z_3$};
+		\draw ($(O)!0.25!(A)$)--++(-90:0.5)--++(180:3.5)node[left]{};
+		\draw ($(O)!0.75!(A)$)--++(-90:1.23)--++(180:3)node[left]{};
+		\draw ($(C)! 0.1*2.2 !(O)$)--++(180:1) node[ground, yscale = -1] (GND){};
+		\foreach \y/\t in {0.2/a_3,0.3/b_3,0.4/a_3} {
+		\draw ($(C)! \y*2.2 !(O)$)--++(180:1) node[left] {$\t$};}
+		
+		\draw (0,-12)coordinate (O)--++(30:1)coordinate (A)--++(90:0.8)coordinate (B)--++(150:1)coordinate (C)--cycle;
+		\draw ($(A)!0.5!(B)$)--++(0:1)node[right]{$z_4$};
+		\draw ($(O)!0.25!(A)$)--++(-90:0.5)--++(180:3.5)node[left]{};
+		\draw ($(O)!0.75!(A)$)--++(-90:1.23)--++(180:3)node[left]{};
+		\draw ($(C)! 0.1*2.2 !(O)$)--++(180:1) node[ground, yscale = -1] (GND){};
+		\foreach \y/\t in {0.2/a_4,0.3/b_4,0.4/a_4} {
+		\draw ($(C)! \y*2.2 !(O)$)--++(180:1) node[left] {$\t$};}
+	\end{tikzpicture}
+	}
+	\end{center}
+	\end{figure}
+	
+	
+
+\end{document}

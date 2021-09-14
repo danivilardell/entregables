@@ -1,0 +1,10 @@
+\babel@toc {catalan}{}
+\contentsline {section}{\numberline {1}Exercici 1}{2}{section.1}%
+\contentsline {section}{\numberline {2}Exercici 2}{3}{section.2}%
+\contentsline {section}{\numberline {3}Exercici 3}{6}{section.3}%
+\contentsline {section}{\numberline {4}Exercici 4}{9}{section.4}%
+\contentsline {section}{\numberline {5}Exercici 5}{9}{section.5}%
+\contentsline {section}{\numberline {6}Exercici 6}{10}{section.6}%
+\contentsline {section}{\numberline {7}Exercici 7}{11}{section.7}%
+\contentsline {section}{\numberline {8}Exercici 8}{12}{section.8}%
+\contentsline {section}{\numberline {9}Exercici 9, Part Extra}{15}{section.9}%

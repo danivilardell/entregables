@@ -1,0 +1,46 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\graphicspath{ {./Images/} }
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Elexioma de l'acció}
+\title{91. Dijkstraído}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	El Miquel pot estar tranquil, el que no podrem assegurar es si en el cami que recorrerà podrà menjar les galetes que ofereix el Rourà als entrenaments. El que hauria de preocupar mes al Miquel es el fet que el seu mentorat li faci la competencia a la Marató.
+	
+	\begin{proof} Definim el graf $G$ amb vertex els quadrats negres i arestes els parells de vertex que estan a la mateixa fila o columna de forma consecutiva. Si aquest graf te un cicle aleshores el Miquel tindrà una casella negre (node) desde on sortir i un cicle per a tornar a aquesta casella inicial, ja que les arestes marquen desde quins quadrats a quins pot anar.
+	
+	Veiem primer que aquest graf tindrà com a minim $2n$ arestes. Contem les minimes arestes per files $S$ i per simetria tindrem les de les columnes. Sigui $a_i = {\#\textrm{caselles negres a la fila } i}$, aleshores es compleix que 
+	
+	\[
+		\sum_{i=1}^n a_i = 2n \implies S \geq \sum_{i=1}^n a_i - 1 = 2n-n = n
+	\]
+	
+	Per tant el graf com a minim contindrà $2n$ arestes. Finalment veiem que un graf de $2n$ vertex i $2n$ ha de tenir un cicle. El graf maximalment aciclic de $2n$ arestes es per definició un arbre, que també per definició te $2n-1$ arestes. Per tant, al ser maximalment aciclic, cualsevol aresta que li afegim crearia un cicle i per tant el graf ha de tenir algun cicle.
+
+	\end{proof}
+	
+	
+	
+	
+\end{document}

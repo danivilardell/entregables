@@ -1,0 +1,50 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\graphicspath{ {./Images/} }
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Elexioma de l'acció}
+\title{37. Regla de la cadena}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	El pobre Felix haurà de buscarse una altra forma de ser més $M.D.L.R.$ ja que, encara que encara no ho sàpiga, aquesta cadena no pot existir.
+	
+	\begin{proof} Suposem que fos cert i arrivarem a una contradicció.
+	
+	Sigui $C$ la cadena de cardinal no numerable, i $C_i$  la partició dels naturals a la posició $i$ de la cadena. Considerem el ordre classic dels naturals, i apuntem que cualsevol subconjunt dels naturals te minim, ja que $\mathbb{N}$ es un conjunt ben ordenat.
+	
+	Considerem la successió $a_n$ definida de la seguent forma:
+	
+	\[
+		a_i = min(C_{i+1}\backslash C_i)
+	\]
+	
+	Esta ben definida ja que $C_{i+1}\backslash C_i \neq \emptyset$ al ser la inclussió estricte i ser $C_{i+1}$ i $C_{i}$ parts de $\mathbb{N}$. També existeix el mínim ja que $\mathbb{N}$ es un conjunt ben ordenat. A mes cal apuntar que $a_i \neq a_j \quad \forall i \neq j$ ja que els nombres dins de $C_{i+1}$ no estan repetits al ser un conjunt i per tant, com que $a_i \in C_{i+1}\backslash C_i \implies a_j \not\in C_{i+1}\backslash C_i$ ja que per la definició (considerant j > i sense perdua de generalitat) $C_i \in C_j \implies a_i \in C_j \implies a_i \not \in C_{j+1}\backslash C_j$.
+	
+	El conjunt format per els elements de la seqüencia serà de igual cardinal que la cadena $C$, i també serà un subconjunt dels naturals cosa que porta a contradicció, ja que els naturals son un conjunt numerable.
+		
+	\end{proof}
+	
+	
+	
+	
+\end{document}

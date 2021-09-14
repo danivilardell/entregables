@@ -1,0 +1,60 @@
+Refinament:  1
+   Temps:  0.001341104507446289
+   Dim sistema:  8
+   Coefs no nuls abans:  28
+   Coefs no nuls despres:  27
+   Sistema resolt: True
+Refinament:  2
+   Temps:  0.0030608177185058594
+   Dim sistema:  45
+   Coefs no nuls abans:  197
+   Coefs no nuls despres:  377
+   Sistema resolt: True
+Refinament:  3
+   Temps:  0.011131763458251953
+   Dim sistema:  112
+   Coefs no nuls abans:  516
+   Coefs no nuls despres:  1497
+   Sistema resolt: True
+Refinament:  4
+   Temps:  0.025218725204467773
+   Dim sistema:  209
+   Coefs no nuls abans:  985
+   Coefs no nuls despres:  3821
+   Sistema resolt: True
+Refinament:  5
+   Temps:  0.05974102020263672
+   Dim sistema:  336
+   Coefs no nuls abans:  1604
+   Coefs no nuls despres:  7754
+   Sistema resolt: True
+Refinament:  6
+   Temps:  0.17484617233276367
+   Dim sistema:  493
+   Coefs no nuls abans:  2373
+   Coefs no nuls despres:  13704
+   Sistema resolt: True
+Refinament:  7
+   Temps:  0.2126011848449707
+   Dim sistema:  680
+   Coefs no nuls abans:  3292
+   Coefs no nuls despres:  22069
+   Sistema resolt: True
+Refinament:  8
+   Temps:  0.34513306617736816
+   Dim sistema:  897
+   Coefs no nuls abans:  4361
+   Coefs no nuls despres:  33249
+   Sistema resolt: True
+Refinament:  9
+   Temps:  0.44358301162719727
+   Dim sistema:  1144
+   Coefs no nuls abans:  5580
+   Coefs no nuls despres:  47647
+   Sistema resolt: True
+Refinament:  10
+   Temps:  0.6282551288604736
+   Dim sistema:  1421
+   Coefs no nuls abans:  6949
+   Coefs no nuls despres:  65666
+   Sistema resolt: True

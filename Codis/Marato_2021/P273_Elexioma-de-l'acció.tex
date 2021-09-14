@@ -1,0 +1,57 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\graphicspath{ {./Images/} }
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Elexioma de l'acció}
+\title{273. I la numeració?}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\begin{proof} Considerem la seguent successió:
+	
+	\[
+		a_0 = 1 \quad a_n = 3a_{n-1}-1
+	\]
+	
+	Per a tenir una idea mental, els primers termes són $1,2,5,14,41,...$.
+	
+	Sigui $A$ el conjunt de tots els elements de la successió $(a)_i$. Definim una altra successió de la seguent forma: $b_1 = 1$, si $i = 2^n$ per algun $n > 0$ aleshores $b_i = 2b_{i-1}+1 = 3^n$. Altrament sigui $b_j = b_{2^n}$ els nombres es definiran de forma recursiva. Hi ha $2^{n-1}$ nombres entre $j$ i el següent $i = 2^n-1$ per algun $n > 0$, la distancia entre els dos elements del mig serà $a_{2^n-2}$. La distancia entre els elements del mig de la subdivisio(es simetric) serà $a_{2^n-3}$ i aixi fins a posarho tot en funció de $b_j$, que es pot fer al ser el nombre de nombres dins una potencia de dos. Per a tenir una idea mental la diferencia entre els elements de la successió consecutius desde la posició $16$ fins a la $31$ son $1,2,1,5,1,2,1,14,1,2,1,5,1,2,1$, algo semblant al \href{https://jutge.org/problems/P62467_en}{problema del jutge} que tots recordem de info 1. 
+	
+	El conjunt de nombres que busquem son els primers $2021$ elements de la successió $(b)_i$.
+	
+	Definim un bloc $B_i$ com els elements de la sequencia entre les posicions $2^i$ i $2^{i+1}-1$. Veiem que dins d'aquest bloc no hi ha $3$ elements en progressió aritmètica. Per veure això nomes cal veure que no existeixen 2 subconjunts consecutius del conjunt de les diferencies entre els nombres del bloc amb sumes iguals.
+	
+	Veiem primer que no poden contenir els mateixos nombres. Abans de repetir cap nombre la sequencia de diferencies n'introdueix un de mes gran per construcció simetrica respecte cada element, per tant no es pot dividir en dos subconjunts iguals. Veiem ara que un dels subconjunts te un element que suma mes que tots els del altre subconjunt. Per construcció, cada element que apareix per primer cop es la suma dels anteriors $+1$ i també es la suma dels que te a la dreta fins al seguent nombre mes gran a ell. Considerem dos subconjunts consecutius, el element mes gran es unic i nomes esta en un dels subconjunts. Aquest element serà mes gran que la suma de tot l'altre subconjunt ja que es mes gran que la suma fins abans del seguent nombre mes gran a ell (que no esta dins del subconjunt ja que ell es el mes gran). Per tant hem vist que dins d'un subconjunt no existeixen 3 elements en progressió aritmetica.
+	
+	Veiem ara que els primers 2021 elements son tots mes petits que 100000. Les posicións $b_{2^n} = 3^n$ i per tant $b_{2^{11} = 2048} = 3^11 = 177147 \implies b_{2^{11}-1} = \frac{177147-1}{2} < 100000$.
+	
+	Veiem que no formen progressió aritmetica entre elements de diferents blocs. Sigui $A_n$ el element mes gran del bloc $B_n$, tenim que $A_n = 3A_{n-1}+1$ ja que $A_n = \frac{3^{n+1}-1}{2}$ i $A_{n-1} = \frac{3^{n}-1}{2}$. Aleshores 
+	
+	\[
+		\frac{A_n+(A_{n-1}-1)}{2} = \frac{(A_n-1)+A_{n-1}-1}{2} = 2A_{n-1}-1
+	\]
+	
+	Per tant qualsevol suma d'un element del nou bloc amb un dels anteriors té la meitat de la suma en el buit entre $A_{n-1}$ i $2A_{n-1}$ i per tant no formen progressió aritmètica.
+	
+	\end{proof}
+	
+\end{document}

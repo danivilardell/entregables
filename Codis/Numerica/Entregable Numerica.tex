@@ -1,0 +1,50 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma}{Prop}
+
+\author{Daniel Vilardell}
+\title{Entregable Numèrica}
+\date{}
+
+\begin{document}
+	\maketitle
+	\begin{lemma} La inversa de una matriu triangular $A$ es una matriu triangular. \end{lemma}
+	\begin{proof}
+		La demostració es farà per matrius triangulars inferiors, ja que si $A$ i $A^{-1}$ triangular inferior $\implies AA^{-1} = I \implies (AA^{-1})^T = I^T = I \implies (A^{-1})^TA^T = I$ i en aquest cas $B=A^T$ i $B^{-1} = (A^{-1})^T$ serien matrius triangulars superiors.
+		
+		Per tal de fer la demostració aplicarem operacions elementals a la matriu A per tal de transformarla en la identitat. Com be sabem de Algebra Lineal, aplicar operacions elementals a una matriu es el mateix que multiplicar per la matriu elemental E equivalent.
+		
+		En primer lloc cal mencionar que totes les operacions elementals que usarem seran les de restar files $i$ files $j$ amb $j < i$ ja que ens interessa eliminar tots els nombres de la part inferior de la matriu $A$. La matriu elemental que ens permet eliminar un nombre $a_{ij}$ es la identitat amb el coeficient $m = \frac{a_{ij}}{a_{ii}}$ a la posició $i, j$ de la matriu. 
+		
+		Sigui $E_i$ la matriu elemental de la iessima operació elemental que fem per a transformar $A$ amb la identitat. Aleshores:
+		
+		\[
+			E_m \cdots E_1 \cdot A = I
+		\]
+		
+		Per la raó comentada abans totes les matrius $E_i$ son triangulars inferiors ja que $A$ només te elements a la part inferior de la matriu i per tant $E_i$ també. També podem afirmar que $A^{-1} = E_m \cdots E_1$ i que com el producte de matrius triangulars inferiors es una matriu triangular inferior, $A^{-1}$ es triangular inferior.
+	\end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Memoria Bloc 3 AST}
+\date{}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\vspace{10mm}
+	\begin{center}
+		Aquest document no sera molt detallat ja que el codi en si es prou entenedor i esta comentat lo suficient com per veure el que fa cada secció.
+	\end{center}
+	\newpage
+	\section{Practica 7}
+	
+	\subsection{Resum general establiment connexió}
+	
+	Primer explicarem una mica com funciona l'establiment de connexió entre el servidor i el client i després explicarem els diferents metodes de les classes TSocket i Protocol.
+	
+	En primer lloc dins del main es crea un Host servidor. Aquest crida el metode openListen i crea un socket passiu que tindrà la funció de crear les connexions entre els clients i el servidor. Un cop fet això el servidor entra en un bucle de while true on crida la funció accept que el mantindrà adormit fins a que no rebi una petició de conexió per part de un client.
+	
+	Per la banda del client, un cop ja s'ha obert el servidor crida la funció openConnect passant el port del servidor com a parametre, i aquesta funció creara un nou socket encarregat de gestionar aquesta connexió i cridara la funció connect. Aquesta ja començara el tema de enviar i rebre paquets per tal d'establir la connexió. En primer lloc introdueix el socket dins de la llista dels sockets actius ja que estara en connexió directa durant la fase de intercanviar dades. Despres envia un segment amb el flag de syn activat per a establir la conexio i canvia el estat a SYN\_SENT. Un cop fet això s'adorm fins a rebre la resposta. 
+	
+	Aquest segment de syn enviat arriba al socket de listen del servidor. Alla es crea un nou socket per a posarlo als sockets actius i ell s'encarregara de la connexio amb el client, així el socket de listen pot seguir executant la seva funció. Es posa també el segment a la cua de accepts i es desperta el fil dormit que esperava la connexió. Aquest fil retornarà aquest tsocket així el host  pot guardarlo i mes tard tenir la opció de tancar aquesta conexió. Aquest thread es posa al estat de conexió establerta i envia un segment amb el flag de syn com a resposta.
+	
+	Quan el segment de syn torna a arribar al client aquest actualitza el estat a connexió establerta i desperta el fil dormit que esperava la resposta.
+	
+	Despres d'això ja tenim la connexió entre el servidor i el client establerta. A partir d'aquí poden intercanviar segments sense problemes.
+	\newpage
+	\subsection{Resum general alliberament connexió}
+	
+	Per a alliberar la connexió entre un servei i el seu client hi ha dos formes diferents, que el servidor cridi el metode close o que ho faci el client. Les dos maneres son simetriques, el que s'intercanviarien els papers el servidor i el client. Per tant explicarem el cas en que el client demana de tancar la connexió i el altre es analog.
+	
+	El client crida primer la funció close del socket que enviarà un segment amb el flag de fin activat al servidor i s'adormirà fins a rebre el fin de resposta. Aquest fin arribarà al servidor i aquest canviarà el estat a close wait i cridara la funció close. En aquest cas simplement crearà el segment amb el flag de fin activat, l'enviarà i tancarà la conexió definitivament eliminant el socket de la llista de sockets actius de Protocol.
+	
+	Un cop aquest ultim segment arriba, el client despertarà el fil que esperava resposta i aquest tancarà també la conexió de la mateixa forma, es a dir, eliminant el socket de la llista de sockets actius de Protocol.
+	
+	
+	
+	\subsection{Protocol}
+	
+	\begin{itemize}
+		\item \textbf{openListen:} Crea un socket passiu encarregat de escoltar les peticions de establiment de conexió i de la creació de sockets actius.
+		\item  \textbf{openConnect:} Crea un socket per al client i comença el establiment de connexió.
+		\item  \textbf{addListenTSocket:} Afegeix a la llista un socket passiu.
+		\item  \textbf{addActiveTSocket:} Afegeix a la llista un socket actiu.
+		\item  \textbf{removeListenTSocket:} Elimina de la llista un socket passiu.
+		\item  \textbf{removeActiveTSocket:} Elimina de la llista un socket actiu.
+		\item  \textbf{getMatchingTSocket:} Retorna un socket actiu amb el port origen i destí especificats. En el cas que no existeixi retorna el socket passiu amb el port origen especificat.
+		\item  \textbf{portInUse:} Mira si el port passat com a parametra esta en us.
+		\item  \textbf{newport:} Retorna un port lliure.
+	\end{itemize}
+	
+	\subsection{TSocket}
+	
+	\begin{itemize}
+		\item  \textbf{listen:} Inicialitza el socket passiu encarregat de gestionar les peticions de conexió al servidor.
+		\item  \textbf{accept:} S'espera fins que hi ha una petició de connexió i quan hi es retorna el socket encarregat de gestionarla.
+		\item  \textbf{connect:} Afegeix el socket als sockets actius del client i envia el segment de SYN. S'adorm fins a rebre la resposta.
+		\item  \textbf{close:} Si ets el que ha creat la petició de tancar la conexió envia un segment de fin i espera la resposta. Un cop rep la resposta elimina el socket de la llista de sockets. Si no ets el que ha creat la petició simplement respons amb un fin i elimines el socket.
+		\item  \textbf{processReceivedSegment:} 
+		\begin{itemize}
+			\item LISTEN: Si rep un segment de syn crea el socket actiu a la banda del servidor, l'afegeix a la llista de sockets actius i de cua d'acceptats i envia un segment de syn al client.
+			\item SYN\_SENT: Si rep la resposta del segment de syn desprerta el fil que la estava esperant.
+			\item ESTABLISHED: Si rep un segment de fin crida close per a tancar la conexió.
+			\item FIN\_WAIT: Desperta el fil que estava esperant la resposta del fin.
+			\item CLOSE\_WAIT: En el diagrama un cop rep el fin envia directament el fin de resposta i tanca la conexió aixi que mai ens trobarem en aquest estat al rebre un missatge.
+		\end{itemize}
+		\item  \textbf{sendSegment:} Envia un segment pel canal.
+		\item  \textbf{stateToString:} Retorna un string amb el estat actual.
+	\end{itemize}
+	
+
+	
+	
+\end{document}
+

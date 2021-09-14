@@ -1,0 +1,67 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\graphicspath{ {./Images/} }
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Previ practica 4 tercera part}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\textbf{Qüestió 1:} Tenim que $1cm = 0.01m \implies T = \frac{0.02}{340} = 58.8ms$ i per tant tenim que
+	
+	\[
+		f = \frac{1}{T} = \frac{340}{0.02} = 17kHz
+	\]
+	
+	\textbf{Qüestió 2:}  En primer lloc tenim que
+	
+	\[
+		V_c(\frac{T}{2}) = V_{cc} + (V_c(t_i)-V_{cc})e^{-\frac{\frac{T}{2}-t_i}{R_{12}C_{10}}}
+	\]
+	
+	I per tant
+	
+	\[
+		-\frac{V_{cc}}{2} = -\frac{3V_{cc}}{2}e^{\frac{\frac{T}{2}}{R_{12}C_{10}}} \implies \frac{1}{3} = e^{\frac{\frac{T}{2}}{R_{12}C_{10}}}
+	\]
+	
+	\[
+		T = 2R_{12}C_{10}ln(3) \implies f = \frac{1}{T} = \frac{1}{2R_{12}C_{10}ln(3)}
+	\]
+	
+	\textbf{Qüestió 3:} 
+	
+	\[
+		f_{min} = 15kHz = \frac{1}{2R_210^{-9}ln(3)} \implies R_{2_{max}} = 30.34k\si{\ohm}
+	\]
+	
+	\[
+		f_{max} = 20kHz = \frac{1}{2R_210^{-9}ln(3)} \implies R_{2_{max}} = 22.75k\si{\ohm}
+	\]
+	
+	I per tant tenim que $22.75k\si{\ohm} < R_2 < 30.34k\si{\ohm}$.
+	
+\end{document}
+
+
+
+

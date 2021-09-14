@@ -1,0 +1,69 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\graphicspath{ {./Images/} }
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Previ practica 4 segona part}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\textbf{Qüestió 1:} Tenim que el periode es de $T = \frac{1}{4000} = 2.5\cdot 10^{-5}s$.
+	
+	\[
+		\frac{T}{2} = 1.25\cdot 10^{-5} = R_9ln(2)330\cdot10^{-12} \implies R_9 = 54.6k\si{\ohm}
+	\]	
+	
+	\textbf{Qüestió 2:}  Serveix com a desacoblament, per a derivar les tensions d'alterna a massa.\\
+	
+	\textbf{Qüestió 3:} 
+	
+	\[
+		T_{OF} = \frac{10}{340} = 0.03s \implies PRF = \frac{1}{0.035} = 34Hz
+	\] 
+	
+	\textbf{Qüestió 4:} Tenint en compte que $f = 40kHz$ tenim que
+	
+	\[
+		\frac{10}{f} = 0.25ms
+	\] 
+	
+	\textbf{Qüestió 5:} Tenim que
+	
+	\[
+		T = 0.25 = ln(\frac{2V_{cc}-2}{V{cc}-2})R_{10}C \implies R_{10} = 1431 \si{\ohm}
+	\]
+	
+	\textbf{Qüestió 6:} 
+	
+	\begin{itemize}
+		\item $R_10 = 1431\si{\ohm}$
+		\item $R_11 = 330k\si{\ohm}$
+		\item $C_7 = 220nF$
+		\item Periode: $T = C_7(R_{10}+0.693R_{11}) = 0.05062s$
+		\item $PRF = \frac{1}{T} = 19.75Hz$
+	\end{itemize}
+	
+\end{document}
+
+
+
+

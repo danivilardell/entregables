@@ -1,0 +1,62 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Elexioma de l'acció}
+\title{10. Torre de $\pi$sa}
+\date{}
+
+\begin{document}
+	\maketitle
+
+	Tot i que amb el problema inicial ens haviem plantejat mostrar el camí a la Joana per arribar a la torre de Pisa, un cop s'ha enviat el pdf modificat hem vist la demostració\footnote{Això demostra també que els Telecos algo de mates dominen} mes accessible que els vols a Italia.
+	
+	\begin{proof}
+	Sigui $a_n = T_n(\sqrt[2\sqrt{\pi}]{\pi})$ la successió de nombres reals. Veiem primer que $a_n \leq \sqrt{\pi}$.
+	
+	En primer lloc tenim $a_0 = \sqrt[2\sqrt{\pi}]{\pi}$ que trivialment es cumpleix $a_0 \leq \sqrt{\pi}$. Suposem ara que $a_n \leq \sqrt{\pi}$
+	
+	\[	
+		a_{n+1} = \sqrt{\pi}^{\frac{a_n}{\sqrt{\pi}}} \leq \sqrt{\pi} \iff a_n \leq \sqrt{\pi} 
+	\]
+	
+	Veiem ara que la successió es creixent.
+	
+	\[
+		a_{n+1} = \sqrt{\pi}^{\frac{a_n}{\sqrt{\pi}}} \geq a_n \iff a_nlog(\sqrt{\pi}) \geq \sqrt{\pi}log(a_n)
+	\]
+	
+	Aquesta ultima desigualtat es certa al tenir que $a_n \leq \sqrt{\pi}$ i també tenim que la derivada de $g(x) = \frac{x}{log(x)}$  es 
+	\[
+		g'(x) = \dfrac{\ln\left(x\right)-1}{\ln^2\left(x\right)}
+	\] 
+	
+	que es negativa en el interval $[a_0, \sqrt{\pi}]$.
+	
+	Ara doncs tenim que $a_n$ creixent amb $a_0 = \sqrt[2\sqrt{\pi}]{\pi}$ i $a_n \leq \sqrt{\pi}\implies \exists l$ limit i $a_0 \leq l \leq \sqrt{\pi}$. Veiem que si $l \neq \sqrt{\pi} \implies l$ no es limit.
+	
+	Suposem que si $\implies \pi^{\frac{l}{2\sqrt{\pi}}}-l = 0$. Sigui $f(x) = \pi^{\frac{x}{2\sqrt{\pi}}}-x$. Te com a derivada
+	
+	\[
+		f'(x) = \dfrac{\ln\left({\pi}\right){\pi}^{\frac{x}{2\sqrt{{\pi}}}-\frac{1}{2}}}{2}-1
+	\]
+	
+	Que es negativa al interval $[a_0, \sqrt{\pi})$. Tambe tenim que $f(\sqrt{\pi}) = 0$. I com que la funció es continua arribem a contradicció, ja que no existeix cap $l \in [a_0, \sqrt{\pi}) | f(l) = 0$.
+
+	\end{proof}
+	
+	
+	
+	
+\end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.18)  28 DEC 2020 21:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.18)  17 JAN 2021 10:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -864,12 +864,17 @@ Overfull \hbox (2.09277pt too wide) in paragraph at lines 206--207
  []
 
 
-Overfull \hbox (2.09277pt too wide) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 212--220
+
+ []
+
+
+Overfull \hbox (2.09277pt too wide) in paragraph at lines 225--226
 [][] 
  []
 
 
-Overfull \hbox (2.09277pt too wide) in paragraph at lines 253--254
+Overfull \hbox (2.09277pt too wide) in paragraph at lines 256--257
 [][] 
  []
 
@@ -878,10 +883,10 @@ Overfull \hbox (2.09277pt too wide) in paragraph at lines 253--254
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (./Formulari Electromagnetisme.aux) ) 
 Here is how much of TeX's memory you used:
- 18603 strings out of 480608
- 389213 string characters out of 5903630
+ 18601 strings out of 480608
+ 389161 string characters out of 5903630
  634364 words of memory out of 5000000
- 34138 multiletter control sequences out of 15000+600000
+ 34136 multiletter control sequences out of 15000+600000
  542127 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,25n,65p,451b,1573s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -906,7 +911,7 @@ pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pf
 b></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb><
 /usr/local/texlive/2020/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb>
-Output written on "Formulari Electromagnetisme.pdf" (1 page, 213414 bytes).
+Output written on "Formulari Electromagnetisme.pdf" (1 page, 213546 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  70 compressed objects within 1 object stream

@@ -1,0 +1,113 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Memoria Bloc 1 AST}
+\date{}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	\section{Practica 1}
+	\subsection{Exercici 1} 
+	
+	Primer de tot hem hagut d'implementar la cua circular, i comprobar que funciona. Aquí nomes mostrarem el codi de la implementació de la cua, el codi per a comprovar que funciona esta dins del fitxer .zip adjuntat a la entrega. Cal apuntar que molts metodes estan posats de forma compacta per a que la memoria no s'estengues massa, el el fitxer .zip no estan en una linea, sinó en varies i es mes llegible.
+	
+	Els comentaris per tal d'entendre la implementació estan posats dins del mateix codi mostrat a continuació.
+	\\\\
+	\textbf{Implementació de la cua circular}
+	\lstinputlisting[basicstyle=\tiny]{Codis/CircularQueue.java}
+	
+	\subsection{Exercici 2} 
+	
+	Un cop hem implementat la cua circular sens proposa implementar una Linked queue, usant una classe auxiliar donada Node. Altre vegada nomes es mostrarà el codi de la implementació. Per a veure el main s'ha de descomprimir el fitxer .zip.
+	\\\\
+	\textbf{Implementació de la cua circular}
+	\lstinputlisting[basicstyle=\tiny]{Codis/LinkedQueue.java}
+	
+	\subsection{Exercici 3} 
+	
+	La implementació de QueueChannel es simple ja que els seus metodes son basicament crides a metodes de la classe CircularQueue, a partir del seu atribut.
+	\\\\
+	\textbf{Implementació de QueueChannel}
+	\lstinputlisting[basicstyle=\tiny]{Codis/QueueChannel.java}
+	
+	\subsection{Exercici 4} 
+	Finalment implementem les classes TSocketSend i TSocketRecv que tenen com a finalitat insertar i extreure elements del canal a partir dels metodes sendData i receiveData.
+	\\\\
+	\textbf{Implementació de TSocketSend}
+	\lstinputlisting[basicstyle=\tiny]{Codis/TSocketSend.java}
+	
+	\textbf{Implementació de TSocketRecv}
+	\lstinputlisting[basicstyle=\tiny]{Codis/TSocketRecv.java}
+	
+	\newpage	
+	\section{Practica 2}
+	
+	\subsection{Exercici 1 i 2} 
+	
+	En aquest primer exercici sens mostra un dels problemes de corre diferents threads alhora, a partir de cridar una funció incrementador de una variable static, cosa que comporta que si s'incrementa desde els 2 threads alhora, nomes s'incrementa en 1, i no en 2. Al exercici 3 sens proposa picar una solució al problema.
+	\\\\
+	\textbf{Implementació de CounterThread}
+	\lstinputlisting[basicstyle=\tiny]{Codis/CounterThread.java}
+	
+	\subsection{Exercici 3} 
+	
+	En aquest exercici busquem una solució al problema esmentat, a partir de usar una classe MonitorCZ que treballa amb metodes en exclusió mutua, gracies al atribut de tipus lock. Per aquesta part sens ha fet picar el metode inc().
+	\\\\
+	\textbf{Implementació de MonitorCZ}
+	\lstinputlisting[basicstyle=\tiny]{Codis/MonitorCZ.java}
+	
+	Un cop tenim aquesta classe, els increments no els farem ja desde CounterThreadCZ, sinó que cridarem la funció increment de dins de monitorCZ. El programa amb el main tindra un atribut de tipus MonitorCZ compartit entre els dos incrementadors.
+	
+	\subsection{Exercici 4} 
+	
+	Aquest exercici ens demana que proposem una implementació de la classe Monitor amb el fí que les ordres s'executin amb un ordre en concret. Per això assignarem un ordre de torns d'execució de 0 fins a N on N es el nombre de fils que es corren alhora. Un cop s'arribi a N es tornara a començar a 0. Per a que dos fils amb possible igual identificació no entrin al seu torn alhora la espera es farà en exclusió mutua.
+	\\\\
+	\textbf{Implementació de MonitorSync}
+	\lstinputlisting[basicstyle=\tiny]{Codis/MonitorSync.java}
+	
+	\subsection{Exercici 5 i 6} 
+	
+	Finalment implementarem un sistema de comunicació emisor receptor. El que sens dona fet te un problema, que el receptor intenta treure dades de una cua buida o el receptor intenta emplenarne una de plena. Aixi que haurem d'afegir una espera mentres la cua sigui buida per al receptor i una espera mentres sigui plena per al emisor. Aixi doncs la implementació de la classe MonitorChannel fa el comentat amb un while.
+	\\\\
+	\textbf{Implementació de MonitorChannel}
+	\lstinputlisting[basicstyle=\tiny]{Codis/MonitorChannel.java}
+	
+\end{document}

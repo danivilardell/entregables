@@ -1,0 +1,36 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\graphicspath{ {./Images/} }
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Elexioma de l'acció}
+\title{P84. H4H4H4H4}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\begin{proof} Com que aquest joc es impossible que quedi en taules (sempre perd algú), finalitza en un nombre finit de tirades i existeixen posicions guanyadores i perdedores podem afirmar que per cada m i n en particular o be el Max o l'Enric tindrà estrategia guanyadora. Veurem ara que sempre existeix estrategia guanyadora pel Max.
+	
+	Suposem que el Max no tingues raó, es a dir que estigues en una posició perdedora i per tant tots els moviments envien a posicions guanyadores. Aleshores considerem el cas en que el Max tira a la casella $(n, m)$. Qualsevol tirada que faci el seu rival la podria haver fet ell com a tirada inicial, i en concret, la tirada que porta a la posició perdedora. Per tant el Max tenia una tirada que portava a una posició perdedora i arribem a contradicció.
+	
+	Amb això però demostrem que la estrategia guanyadora pel Max existeix, que la tingui o no ja no es el seu problema.
+	\end{proof}
+	
+\end{document}

@@ -1,0 +1,60 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[english]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newtheorem{lemma}{Lemma}
+\renewcommand\thelemma{\unskip}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{}
+\date{}
+
+\begin{document}
+	\maketitle
+	\begin{lemma}
+	Let $F_n$ be the n'th Fibbonacci number. Proof that for all odd n the following equality holds.
+	
+	\[
+		F_n = \sum_{k=0}^{\frac{n-1}{2}} {\frac{n-1}{2}+k \choose 2k }
+	\]
+	\end{lemma}
+	
+	\begin{proof} To prove this equality we are going to use double counting tecnique and we are going to count the number of compositions of number n in an odd number of parts.
+	
+	We first divide the set of partitions in 2, the ones that have 1 as last element and the ones that do not. Those sets are disjoint and each composition is in one of those 2 sets. Let $c_n$ be the number of compositions of number n in an odd number of parts. Then we have that the first set is equal to $c_{n-1}$ since we can add a 1 the each composition of $n-1$ at the end. We also have that the second set is equal to $c_{n-2}$ since we can add 2 to the last number in each composition of $n-2$.
+	
+	We know that the number of partitions of 1 and 2 in odd parts is both 1, therefore we have that 
+	
+	\[
+		c_n = c_{n-1} + c_{n-2} \qquad c_1 = c_2 = 1
+	\]
+	
+	And we know that that recurrence is the same as the Fibbonacci recurrence. Therefore $c_n = F_n$.
+	
+	We will now count that a different way. We will first find the number of ways to compose a number $n$ in $k$ odd parts and then we will sum that for all $k$. The number of ways to compose $n$ in $k$ odd parts is the same as the ways to compose $n-k$ into even parts which is the same as the number of ways to compose $\frac{n-k}{2}$ (if $n$ is odd and $k$ even we know that the sum of $k$ odd numbers is an even number so the number of compositions for $k$ odd will be 0). 
+	
+	We also know that the number of compositions of a number into k parts is ${n+k-1\choose k-1}$ Therefore we find that the number of partitions 
+	
+	\[
+		\sum_{k=0}^{\frac{n-1}{2}} {\frac{n-2k+1}{2} +2k+1-1\choose 2k +1-1} = \sum_{k=0}^{\frac{n-1}{2}} {\frac{n+1}{2} +k\choose 2k}
+	\]
+	
+	From where we can conclude that 
+	
+	\[
+		F_n = \sum_{k=0}^{\frac{n-1}{2}} {\frac{n-1}{2}+k \choose 2k }
+	\]
+	\end{proof}
+
+\end{document}

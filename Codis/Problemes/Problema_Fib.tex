@@ -1,0 +1,28 @@
+\documentclass[12pt, a4papre]{article}
+\usepackage[catalan]{babel}
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xifthen}
+
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue
+}
+
+\author{Daniel Vilardell}
+\title{Problema}
+\date{}
+
+\begin{document}
+	\maketitle
+	\textbf{1.} Sigui $F_n$ el enessim nombre de Fibbonacci. Demostra que si n es senar es compleix la següent igualtat:
+	
+	\[
+		F_n = \sum_{k=0}^{\frac{n-1}{2}} {\frac{n-1}{2}+k \choose 2k }
+	\]
+
+\end{document}
